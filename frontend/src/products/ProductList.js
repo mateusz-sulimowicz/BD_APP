@@ -39,7 +39,8 @@ class ProductList extends Component {
             return <p>Loading...</p>
         }
 
-        const productsList = products.map(product => <Product data={product}/>);
+        const productsList = products.map(product => <Product key={product.id} data={product}/>);
+
         return (
             <div>
                 <AppNavBar/>

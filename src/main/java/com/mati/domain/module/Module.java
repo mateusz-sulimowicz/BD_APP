@@ -13,6 +13,13 @@ public class Module {
     @Column(name = "name", nullable = false)
     private String name;
 
+    public Module(String name) {
+        this.name = name;
+    }
+
+    public Module() {
+    }
+
     public Long getId() {
         return id;
     }

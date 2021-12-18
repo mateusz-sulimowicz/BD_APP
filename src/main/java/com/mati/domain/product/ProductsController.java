@@ -32,7 +32,7 @@ public class ProductsController {
 	@PostMapping
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
 		Product savedProduct = productRepository.save(product);
-		return ResponseEntity.created(new URI("/clients/" + product.getId())).body(savedProduct);
+		return ResponseEntity.created(new URI("/api/products/" + product.getId())).body(savedProduct);
 	}
 
 	@PutMapping("/{id}")
@@ -45,7 +45,7 @@ public class ProductsController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Product> deleteClient(@PathVariable Long id) {
+	public ResponseEntity<Product> deleteProduct(@PathVariable Long id) {
 		productRepository.deleteById(id);
 		return ResponseEntity.ok().build();
 	}

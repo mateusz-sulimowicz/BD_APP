@@ -15,7 +15,6 @@ public class Product {
     public static final String TABLE_NAME = "product";
     public static final String RECIPE_TABLE_NAME = "recipe";
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -33,8 +32,9 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "module_id"))
     private List<Module> modules;
 
-    public Product(String name) {
+    public Product(String name, BigDecimal basePrice) {
         this.name = name;
+        this.basePrice = basePrice;
     }
 
     public Product() {
@@ -54,6 +54,22 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BigDecimal getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(BigDecimal basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public List<Module> getModules() {
+        return modules;
+    }
+
+    public void setModules(List<Module> modules) {
+        this.modules = modules;
     }
 
     @Override
