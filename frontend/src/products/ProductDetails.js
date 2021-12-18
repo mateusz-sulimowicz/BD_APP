@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Container, Table} from "reactstrap";
-import {Link} from "react-router-dom";
+import {Button, Container} from "reactstrap";
 import AppNavbar from "../util/AppNavBar";
-import Product from "./Product";
 import Module from "./Module";
 
 class ProductDetails extends Component {
@@ -24,15 +22,11 @@ class ProductDetails extends Component {
 
     render() {
         const {product} = this.state;
+        const modules = product.modules;
 
-        const modules = this.state.product.modules;
         const modulesList = modules
             .map(module =>
-                <tr key={module.id}>
-                    <td>
                         <Module data={module}/>
-                    </td>
-                </tr>
             );
 
         return (
@@ -49,16 +43,8 @@ class ProductDetails extends Component {
                     <p>
                         Description: bla bla bla
                     </p>
-                    <Table className="mt-4">
-                        <thead>
-                        <tr>
-                            <th width="30%">Modules</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {modulesList}
-                        </tbody>
-                    </Table>
+                    <h4>Available Options:</h4>
+                    {modulesList}
                 </Container>
             </div>
         )

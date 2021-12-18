@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Navbar, NavbarBrand} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import {Navbar, Nav, NavbarBrand, NavLink} from 'reactstrap';
 
 export default class AppNavbar extends Component {
     constructor(props) {
@@ -16,8 +15,13 @@ export default class AppNavbar extends Component {
     }
 
     render() {
-        return <Navbar color="dark" dark expand="md">
-            <NavbarBrand tag={Link} to="/">Home</NavbarBrand>
+        return <Navbar  color="dark" dark expand="md">
+            <NavbarBrand href="/home">Home</NavbarBrand>
+            <Nav className="me-auto">
+                <NavLink href="/products">Products</NavLink>
+                <NavLink href="/orders">Orders</NavLink>
+
+            </Nav>
         </Navbar>;
     }
 }

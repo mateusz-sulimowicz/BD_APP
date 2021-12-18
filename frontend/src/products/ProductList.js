@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, ButtonGroup, Container, Table} from 'reactstrap';
+import {Container, Table} from 'reactstrap';
 import AppNavBar from '../util/AppNavBar';
 import Product from "./Product"
 
@@ -12,9 +12,10 @@ class ProductList extends Component {
         // You must bind functions to class instance, to allow proper `this.` binding
     }
 
-    async componentDidMount() {
-        const fetchedProducts = await (await fetch('/api/products')).json();
-        this.setState({products: fetchedProducts});
+    componentDidMount() {
+        fetch('/api/products')
+            .then(response => response.json())
+            .then(fetchedProducts =>  this.setState({products: fetchedProducts}));
     }
 
     /* async remove(id) {
@@ -32,13 +33,7 @@ class ProductList extends Component {
      }*/
 
     render() {
-        const {products, isLoading} = this.state;
-
-        if (isLoading) {
-            return <p>Loading...</p>
-        }
-
-        console.log(this.state)
+        const products = this.state.products;
 
         const productsList = products
             .map(product => <Product key={product.id} data={product}/>);
@@ -47,11 +42,10 @@ class ProductList extends Component {
             <div>
                 <AppNavBar/>
                 <Container fluid>
-                    <h3>Products</h3>
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="30%">Please select product.</th>
+                            <th width="30%">Please select a product.</th>
                         </tr>
                         </thead>
                         <tbody>
