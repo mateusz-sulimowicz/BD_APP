@@ -6,8 +6,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = Module.TABLE_NAME)
 public class Module {
 
+    public static final String TABLE_NAME = "module";
     public static final String OPTION_TABLE_NAME = "option";
 
     @Id
