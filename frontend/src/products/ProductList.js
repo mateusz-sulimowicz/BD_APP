@@ -12,10 +12,9 @@ class ProductList extends Component {
         // You must bind functions to class instance, to allow proper `this.` binding
     }
 
-    componentDidMount() {
-        fetch('/api/products')
-            .then(response => response.json())
-            .then(productsFetchedData => this.setState({products: productsFetchedData}))
+    async componentDidMount() {
+        const fetchedProducts = await (await fetch('/api/products')).json();
+        this.setState({products: fetchedProducts});
     }
 
     /* async remove(id) {
@@ -39,7 +38,10 @@ class ProductList extends Component {
             return <p>Loading...</p>
         }
 
-        const productsList = products.map(product => <Product key={product.id} data={product}/>);
+        console.log(this.state)
+
+        const productsList = products
+            .map(product => <Product key={product.id} data={product}/>);
 
         return (
             <div>
@@ -49,8 +51,7 @@ class ProductList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="30%">Name</th>
-                            <th width="40%">Order</th>
+                            <th width="30%">Please select product.</th>
                         </tr>
                         </thead>
                         <tbody>
