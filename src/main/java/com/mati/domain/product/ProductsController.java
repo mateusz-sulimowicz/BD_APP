@@ -26,18 +26,25 @@ public class ProductsController {
 
 	@GetMapping("/{id}")
 	public Product getProduct(@PathVariable Long id) {
-		return productRepository.findById(id).orElseThrow(RuntimeException::new);
+		return productRepository
+				.findById(id)
+				.orElseThrow(RuntimeException::new);
 	}
 
 	@PostMapping
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
 		Product savedProduct = productRepository.save(product);
-		return ResponseEntity.created(new URI("/api/products/" + product.getId())).body(savedProduct);
+		return ResponseEntity
+				.created(new URI("/api/products/" + product.getId()))
+				.body(savedProduct);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-		Product currentProduct = productRepository.findById(id).orElseThrow(RuntimeException::new);
+		Product currentProduct = productRepository
+				.findById(id)
+				.orElseThrow(RuntimeException::new);
+
 		currentProduct.setName(product.getName());
 		currentProduct = productRepository.save(product);
 

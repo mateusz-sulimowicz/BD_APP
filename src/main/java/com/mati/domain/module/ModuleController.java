@@ -29,19 +29,27 @@ public class ModuleController {
 
     @GetMapping("/{id}")
     public Module getModule(@PathVariable Long id) {
-        return moduleRepository.findById(id).orElseThrow(RuntimeException::new);
+        return moduleRepository
+                .findById(id)
+                .orElseThrow(RuntimeException::new);
     }
 
     @PostMapping
     public ResponseEntity<Module> createModule(@RequestBody Module module) throws URISyntaxException {
         Module savedModule = moduleRepository.save(module);
-        return ResponseEntity.created(new URI("/api/modules/" + module.getId())).body(savedModule);
+        return ResponseEntity
+                .created(new URI("/api/modules/" + module.getId()))
+                .body(savedModule);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Module> updateModule(@PathVariable Long id, @RequestBody Module module) {
-        Module currentModule = moduleRepository.findById(id).orElseThrow(RuntimeException::new);
+        Module currentModule = moduleRepository
+                .findById(id)
+                .orElseThrow(RuntimeException::new);
+
         currentModule.setName(module.getName());
+        currentModule.setItems(module.getItems());
         currentModule = moduleRepository.save(module);
 
         return ResponseEntity.ok(currentModule);
