@@ -1,9 +1,14 @@
 package com.mati.domain.module;
 
+import com.mati.domain.item.Item;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Module {
+
+    public static final String OPTION_TABLE_NAME = "option";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,6 +17,12 @@ public class Module {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @OneToMany
+    @JoinTable(name = OPTION_TABLE_NAME,
+            joinColumns = @JoinColumn(name = "module_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private List<Item> items;
 
     public Module(String name) {
         this.name = name;
@@ -34,5 +45,13 @@ public class Module {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

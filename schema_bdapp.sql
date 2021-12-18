@@ -42,12 +42,11 @@ create table config
 
 create table option
 (
-    product_id integer not null references product,
     module_id integer not null references module,
     item_id   integer not null references item,
     price     numeric not null,
     count     integer not null,
-    constraint option_pk primary key (product_id, module_id, item_id)
+    constraint option_pk primary key (module_id, item_id)
 );
 
 create table recipe
@@ -74,8 +73,11 @@ select * from product;
 select * from module;
 select * from item;
 
-INSERT INTO option values (1, 1, 1, 0, 1);
-INSERT INTO option values (1, 1, 2, 299, 1);
+INSERT INTO option values (1, 1, 0, 1);
+INSERT INTO option values (1, 2, 299, 1);
+
+INSERT INTO option values (2, 3, 0, 1);
+INSERT INTO option values (2, 4, 0, 1);
 
 INSERT INTO recipe values (1, 1);
 INSERT INTO recipe values (1, 2);

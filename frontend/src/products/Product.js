@@ -19,7 +19,6 @@ class Product extends Component {
             </tr>
         )
     }
-
 }
 
 export default Product

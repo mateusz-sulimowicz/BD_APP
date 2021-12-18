@@ -25,10 +25,15 @@ class ProductDetails extends Component {
     render() {
         const {product} = this.state;
 
-        console.log(product.modules);
-
         const modules = this.state.product.modules;
-        const modulesList = modules.map(module => <Module key={module.id} data={module}/>);
+        const modulesList = modules
+            .map(module =>
+                <tr key={module.id}>
+                    <td>
+                        <Module data={module}/>
+                    </td>
+                </tr>
+            );
 
         return (
             <div>
