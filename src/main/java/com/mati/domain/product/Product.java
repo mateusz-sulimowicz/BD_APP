@@ -1,6 +1,9 @@
 package com.mati.domain.product;
 
 import com.mati.domain.module.Module;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,6 +13,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = Product.TABLE_NAME)
+@Getter
+@Setter
+@ToString
 public class Product {
 
     public static final String TABLE_NAME = "product";
@@ -30,47 +36,8 @@ public class Product {
     @JoinTable(name = RECIPE_TABLE_NAME,
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "module_id"))
+    @ToString.Exclude
     private List<Module> modules;
-
-    public Product(String name, BigDecimal basePrice) {
-        this.name = name;
-        this.basePrice = basePrice;
-    }
-
-    public Product() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getBasePrice() {
-        return basePrice;
-    }
-
-    public void setBasePrice(BigDecimal basePrice) {
-        this.basePrice = basePrice;
-    }
-
-    public List<Module> getModules() {
-        return modules;
-    }
-
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -85,13 +52,5 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
     }
 }

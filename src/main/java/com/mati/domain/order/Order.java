@@ -1,12 +1,18 @@
 package com.mati.domain.order;
 
 import com.mati.domain.product.Product;
+import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 @Table(name = Order.TABLE_NAME)
+@Getter
+@Setter
+@ToString
 public class Order {
 
     public static final String TABLE_NAME = "product_order";
@@ -17,33 +23,28 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id")
     private Product product;
+
+    @Column(name = "quantity")
+    private Long quantity;
+
+    @Column(name = "order_date")
+    private LocalDate orderDate;
 
     @Column(name = "deadline")
     private LocalDate deadline;
 
-    public Long getId() {
-        return id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Order order = (Order) o;
+        return id != null && Objects.equals(id, order.id);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public LocalDate getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(LocalDate deadline) {
-        this.deadline = deadline;
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

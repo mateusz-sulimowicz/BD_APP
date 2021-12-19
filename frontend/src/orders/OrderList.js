@@ -29,7 +29,10 @@ class OrderList extends Component {
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="30%">Orders</th>
+                            <th width="5%">id</th>
+                            <th width="20%">product</th>
+                            <th width="10%">order date</th>
+                            <th width="10%">deadline</th>
                         </tr>
                         </thead>
                         <tbody>

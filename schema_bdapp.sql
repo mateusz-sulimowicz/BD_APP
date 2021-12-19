@@ -29,6 +29,8 @@ create table product_order
 (
     id         integer generated always as identity primary key,
     product_id integer not null references product,
+    quantity integer not null default 1,
+    order_date date not null default current_date,
     deadline   date    not null
 );
 
@@ -81,3 +83,8 @@ INSERT INTO option values (2, 4, 0, 1);
 
 INSERT INTO recipe values (1, 1);
 INSERT INTO recipe values (1, 2);
+
+INSERT INTO product_order values (default, 1, default, default, '2022-01-15');
+INSERT INTO product_order values (default, 1, 3, default, '2022-01-17');
+
+select * from product_order

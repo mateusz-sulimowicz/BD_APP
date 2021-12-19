@@ -6,16 +6,28 @@ class Order extends Component {
 
     render() {
         const id = this.props.data.id;
+        const productId = this.props.data.product.id;
+        const productName = this.props.data.product.name;
+
 
         return (
             <tr>
                 <td>
                     <Button color="link">
                         <Link to={"/orders/"+ id}>
-                            {this.props.data.name}
+                            {id}
                         </Link>
                     </Button>
                 </td>
+                <td>
+                    <Button color="link">
+                        <Link to={"/products/"+ productId}>
+                            {productName}
+                        </Link>
+                    </Button>
+                </td>
+
+
             </tr>
         )
     }
