@@ -8,7 +8,9 @@ class Order extends Component {
         const id = this.props.data.id;
         const productId = this.props.data.product.id;
         const productName = this.props.data.product.name;
-
+        const quantity = this.props.data.quantity;
+        const orderDate = this.props.data.orderDate;
+        const deadline = this.props.data.deadline;
 
         return (
             <tr>
@@ -25,6 +27,15 @@ class Order extends Component {
                             {productName}
                         </Link>
                     </Button>
+                </td>
+                <td>
+                    {quantity}
+                </td>
+                <td>
+                    {orderDate}
+                </td>
+                <td>
+                    {deadline}
                 </td>
 
 
