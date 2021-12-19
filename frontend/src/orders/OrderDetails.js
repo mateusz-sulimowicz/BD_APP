@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {Button, Container} from "reactstrap";
 import AppNavbar from "../util/AppNavBar";
+import PickedOption from "./PickedOption";
 
 class OrderDetails extends Component {
 
     emptyOrder = {
-        deadline: {},
-        orderDate: {},
-        product: {}
+        product: {
+            modules: []
+        },
     }
 
     constructor(props) {
@@ -24,20 +25,27 @@ class OrderDetails extends Component {
     render() {
         const {order} = this.state;
 
-        console.log(order);
+        const pickedOptions = order.product.modules
+            .map(module => <PickedOption
+                key={module.id}
+                module={module}
+                orderId={order.id}/>
+            )
+
+        console.log(pickedOptions);
 
         return (
             <div>
                 <AppNavbar/>
 
                 <Container fluid>
-                    <h3>
-
-                    </h3>
-                    <p>
-                        Description: bla bla bla
-                    </p>
-
+                    <h1>
+                        Order number: {order.id}
+                    </h1>
+                    <h2>
+                        Product: {order.product.name}
+                    </h2>
+                    {pickedOptions}
                 </Container>
             </div>
         )
@@ -55,7 +63,7 @@ class OrderDetails extends Component {
 
                 <Container fluid>
                     <div style={{float: 'right'}}>
-                        <Button color="success">Order now</Button>
+                        <Button color="success">OrderListRecord now</Button>
                     </div>
                     <h3>
                         {this.state.product.name}

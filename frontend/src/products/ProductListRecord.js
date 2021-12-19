@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from "reactstrap";
 import {Link} from "react-router-dom";
 
-class Product extends Component {
+class ProductListRecord extends Component {
 
     render() {
         const id = this.props.data.id;
@@ -21,4 +21,4 @@ class Product extends Component {
     }
 }
 
-export default Product
+export default ProductListRecord

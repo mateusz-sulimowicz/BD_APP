@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Table} from 'reactstrap';
 import AppNavBar from '../util/AppNavBar';
-import Product from "./Product"
+import ProductListRecord from "./ProductListRecord"
 
 class ProductList extends Component {
 
@@ -36,7 +36,7 @@ class ProductList extends Component {
         const products = this.state.products;
 
         const productsList = products
-            .map(product => <Product key={product.id} data={product}/>);
+            .map(product => <ProductListRecord key={product.id} data={product}/>);
 
         return (
             <div>

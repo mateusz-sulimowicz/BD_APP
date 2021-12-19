@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Container, Table} from "reactstrap";
 import AppNavBar from "../util/AppNavBar";
-import Order from "./Order"
+import OrderListRecord from "./OrderListRecord"
 
 class OrderList extends Component {
 
@@ -23,7 +23,7 @@ class OrderList extends Component {
         console.log(this.state.orders);
         const orderList = orders
             .map(order =>
-                <Order key={order.id} data={order}/>);
+                <OrderListRecord key={order.id} data={order}/>);
 
         return (
             <div>

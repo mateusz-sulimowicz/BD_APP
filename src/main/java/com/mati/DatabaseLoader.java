@@ -24,8 +24,8 @@ public class DatabaseLoader implements CommandLineRunner {
 
 	@Override
 	public void run(String... strings) throws Exception {
-		this.productRepository.save(new Product("Iphone 10 Pro", new BigDecimal(999)));
-        this.productRepository.save(new Product("Iphone 10 Pro", new BigDecimal(999)));
+		this.productRepository.save(new ProductListRecord("Iphone 10 Pro", new BigDecimal(999)));
+        this.productRepository.save(new ProductListRecord("Iphone 10 Pro", new BigDecimal(999)));
         this.moduleRepository.save(new Module("Camera"));
         this.moduleRepository.save(new Module("Storage"));
 	}
