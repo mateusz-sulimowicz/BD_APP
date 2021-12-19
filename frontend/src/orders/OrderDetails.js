@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Container} from "reactstrap";
+import {Button, Container, Table} from "reactstrap";
 import AppNavbar from "../util/AppNavBar";
 import PickedOption from "./PickedOption";
 
@@ -39,12 +39,25 @@ class OrderDetails extends Component {
                 <AppNavbar/>
 
                 <Container fluid>
-                    <h1>
-                        Order number: {order.id}
-                    </h1>
-                    <h2>
-                        Product: {order.product.name}
-                    </h2>
+                    <Table className="mt-4">
+                        <thead>
+                        <tr>
+                            <th width="30%"> Order details</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                Order number: {order.id}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Product: {order.product.name}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </Table>
                     {pickedOptions}
                 </Container>
             </div>

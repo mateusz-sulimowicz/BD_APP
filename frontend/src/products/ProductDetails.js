@@ -26,9 +26,7 @@ class ProductDetails extends Component {
         const modules = product.modules;
 
         const modulesList = modules
-            .map(module =>
-                        <Module data={module}/>
-            );
+            .map(module => <Module data={module}/>);
 
         return (
             <div>
