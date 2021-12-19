@@ -16,6 +16,7 @@ import java.util.Objects;
 public class Order {
 
     public static final String TABLE_NAME = "product_order";
+    public static final String CONFIG_TABLE_NAME = "config";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -7,11 +7,13 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = Item.TABLE_NAME)
 @Getter
 @Setter
 @ToString
 public class Item {
+
+    public static final String TABLE_NAME = "item";
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

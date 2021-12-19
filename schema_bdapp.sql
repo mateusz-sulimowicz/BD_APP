@@ -87,4 +87,12 @@ INSERT INTO recipe values (1, 2);
 INSERT INTO product_order values (default, 1, default, default, '2022-01-15');
 INSERT INTO product_order values (default, 1, 3, default, '2022-01-17');
 
-select * from product_order
+select * from product_order;
+
+INSERT INTO config values(1, 1, 2);
+INSERT INTO config values(1, 2, 4);
+
+SELECT * from config;
+
+
+SELECT i.* FROM ITEM i JOIN CONFIG c ON i.id = c.item_id WHERE c.order_id = 1 AND c.module_id = 1;

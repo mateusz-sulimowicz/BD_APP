@@ -14,11 +14,10 @@ public class ModuleController {
 
     private final ModuleRepository repository;
 
+    @Autowired
     public ModuleController(ModuleRepository moduleRepository) {
         this.repository = moduleRepository;
     }
-
-    @Autowired
 
     @GetMapping
     public List<Module> getModules() {
