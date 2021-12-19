@@ -63,7 +63,7 @@ class OrderDetails extends Component {
 
                 <Container fluid>
                     <div style={{float: 'right'}}>
-                        <Button color="success">OrderListRecord now</Button>
+                        <Button color="success">Order now</Button>
                     </div>
                     <h3>
                         {this.state.product.name}

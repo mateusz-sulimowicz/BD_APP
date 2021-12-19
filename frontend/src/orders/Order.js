@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button} from "reactstrap";
 import {Link} from "react-router-dom";
 
-class OrderListRecord extends Component {
+class Order extends Component {
 
     render() {
         const id = this.props.data.id;
@@ -44,4 +44,4 @@ class OrderListRecord extends Component {
     }
 }
 
-export default OrderListRecord;
+export default Order;
