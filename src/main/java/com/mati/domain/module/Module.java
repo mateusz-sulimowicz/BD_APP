@@ -32,35 +32,4 @@ public class Module {
             inverseJoinColumns = @JoinColumn(name = "item_id"))
     @ToString.Exclude
     private List<Item> items;
-
-    public Module(String name) {
-        this.name = name;
-    }
-
-    public Module() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
 }
