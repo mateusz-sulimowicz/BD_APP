@@ -15,9 +15,10 @@ class ProductDetails extends Component {
         this.state = {product: this.emptyProduct};
     }
 
-    async componentDidMount() {
-        const fetchedDetails = await (await fetch(`/api/products/` + this.props.match.params.id)).json();
-        this.setState({product: fetchedDetails});
+    componentDidMount() {
+        fetch(`/api/products/` + this.props.match.params.id)
+            .then(response => response.json())
+            .then(fetchedDetails => this.setState({product: fetchedDetails}));
     }
 
     render() {

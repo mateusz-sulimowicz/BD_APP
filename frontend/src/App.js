@@ -5,6 +5,7 @@ import ProductList from "./products/ProductList";
 import Home from "./home/Home";
 import ProductDetails from "./products/ProductDetails";
 import OrderList from "./orders/OrderList";
+import OrderDetails from "./orders/OrderDetails"
 
 class App extends Component {
     render() {
@@ -13,7 +14,7 @@ class App extends Component {
               <Switch>
                   <Route path="/products/:id" component={ProductDetails}/>
                   <Route path="/products" exact={true} component={ProductList}/>
-                  <Route path="/orders:id" component={OrderList}/>
+                  <Route path="/orders/:id" component={OrderDetails}/>
                   <Route path="/orders" exact={true} component={OrderList}/>
                   <Route path="/home" exact={true} component={Home}/>
               </Switch>

@@ -33,10 +33,9 @@ public class ItemController {
                 .orElseThrow(RuntimeException::new);
     }
 
-    @GetMapping("/order")
+    @GetMapping("/orderconfig")
     public Item getItemByOrderAndModule(@RequestParam(name = "orderId") Long orderId,
                                         @RequestParam(name = "moduleId") Long moduleId) {
-        logger.info("PARAMS: orderId: " + orderId + " moduleId: " + moduleId);
         return repository
                 .findByOrderAndModule(orderId, moduleId)
                 .orElseThrow(RuntimeException::new);

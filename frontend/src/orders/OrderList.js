@@ -14,13 +14,16 @@ class OrderList extends Component {
         fetch('/api/orders')
             .then(response => response.json())
             .then(fetchedOrders =>  this.setState({orders: fetchedOrders}));
+
     }
 
     render() {
         const orders = this.state.orders;
 
+        console.log(this.state.orders);
         const orderList = orders
-            .map(order => <Order key={order.id} data={order}/>);
+            .map(order =>
+                <Order key={order.id} data={order}/>);
 
         return (
             <div>
