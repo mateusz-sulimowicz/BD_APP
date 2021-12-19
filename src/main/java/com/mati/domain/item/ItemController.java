@@ -3,6 +3,7 @@ package com.mati.domain.item;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/items")
 public class ItemController {
 
+    private final Logger logger = Logger.getLogger(String.valueOf(ItemController.class));
     private final ItemRepository repository;
 
     @Autowired
@@ -28,6 +30,15 @@ public class ItemController {
     public Item getItem(@PathVariable Long id) {
         return repository
                 .findById(id)
+                .orElseThrow(RuntimeException::new);
+    }
+
+    @GetMapping("/order")
+    public Item getItemByOrderAndModule(@RequestParam(name = "orderId") Long orderId,
+                                        @RequestParam(name = "moduleId") Long moduleId) {
+        logger.info("PARAMS: orderId: " + orderId + " moduleId: " + moduleId);
+        return repository
+                .findByOrderAndModule(orderId, moduleId)
                 .orElseThrow(RuntimeException::new);
     }
 

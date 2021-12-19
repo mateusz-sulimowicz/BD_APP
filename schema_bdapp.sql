@@ -94,5 +94,4 @@ INSERT INTO config values(1, 2, 4);
 
 SELECT * from config;
 
-
 SELECT i.* FROM ITEM i JOIN CONFIG c ON i.id = c.item_id WHERE c.order_id = 1 AND c.module_id = 1;
