@@ -8,6 +8,7 @@ import OrderList from "./orders/OrderList";
 import OrderDetails from "./orders/OrderDetails"
 import ComposeOrder from "./orders/compose/ComposeOrder";
 import AppNavBar from "./util/AppNavBar";
+import ItemList from "./items/ItemList";
 
 class App extends Component {
     render() {
@@ -15,6 +16,7 @@ class App extends Component {
           <Router>
               <AppNavBar/>
               <Switch>
+                  <Route path="/items"  exact={true} component={ItemList}/>
                   <Route path="/products/composeOrder/:id" component={ComposeOrder}/>
                   <Route path="/products/:id" component={ProductDetails}/>
                   <Route path="/products" exact={true} component={ProductList}/>

@@ -20,6 +20,7 @@ export default class AppNavbar extends Component {
             <Nav className="me-auto">
                 <NavLink href="/products">Products</NavLink>
                 <NavLink href="/orders">Orders</NavLink>
+                <NavLink href="/items">Items</NavLink>
 
             </Nav>
         </Navbar>;
