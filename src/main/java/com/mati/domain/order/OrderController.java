@@ -1,6 +1,7 @@
 package com.mati.domain.order;
 
 
+import com.mati.domain.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +15,12 @@ import java.util.List;
 public class OrderController {
 
     private final OrderRepository repository;
+    private final ProductRepository productRepository;
 
     @Autowired
-    public OrderController(OrderRepository repository) {
+    public OrderController(OrderRepository repository, ProductRepository productRepository) {
         this.repository = repository;
+        this.productRepository = productRepository;
     }
 
     @GetMapping
@@ -34,6 +37,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) throws URISyntaxException {
+        System.out.println(order);
         Order savedOrder = repository.save(order);
         return ResponseEntity
                 .created(new URI("/api/orders/" + order.getId()))
@@ -47,7 +51,8 @@ public class OrderController {
                 .orElseThrow(RuntimeException::new);
 
         currentOrder.setProduct(order.getProduct());
-        currentOrder.setDeadline(order.getDeadline());
+        currentOrder.setValue(order.getValue());
+        currentOrder.setOrderDate(order.getOrderDate());
         currentOrder = repository.save(order);
 
         return ResponseEntity.ok(currentOrder);

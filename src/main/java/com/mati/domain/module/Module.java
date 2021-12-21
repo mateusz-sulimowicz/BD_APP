@@ -1,6 +1,7 @@
 package com.mati.domain.module;
 
 import com.mati.domain.item.Item;
+import com.mati.domain.option.Option;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,7 +20,7 @@ public class Module {
     public static final String OPTION_TABLE_NAME = "option";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -27,9 +28,7 @@ public class Module {
     private String name;
 
     @OneToMany
-    @JoinTable(name = OPTION_TABLE_NAME,
-            joinColumns = @JoinColumn(name = "module_id"),
-            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    @JoinColumn(name = "module_id")
     @ToString.Exclude
-    private List<Item> items;
+    private List<Option> options;
 }

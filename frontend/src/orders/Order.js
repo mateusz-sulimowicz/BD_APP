@@ -4,13 +4,16 @@ import {Link} from "react-router-dom";
 
 class Order extends Component {
 
+
+
     render() {
+        console.log(this.props)
         const id = this.props.data.id;
         const productId = this.props.data.product.id;
         const productName = this.props.data.product.name;
         const quantity = this.props.data.quantity;
         const orderDate = this.props.data.orderDate;
-        const deadline = this.props.data.deadline;
+        const value = this.props.data.value;
 
         return (
             <tr>
@@ -30,6 +33,9 @@ class Order extends Component {
                 </td>
                 <td>
                     {quantity}
+                </td>
+                <td>
+                    {value}
                 </td>
                 <td>
                     {orderDate}

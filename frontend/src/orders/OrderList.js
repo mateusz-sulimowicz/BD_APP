@@ -34,6 +34,7 @@ class OrderList extends Component {
                             <th width="5%">id</th>
                             <th width="20%">product</th>
                             <th width="5%">quantity</th>
+                            <th width="5%">value</th>
                             <th width="10%">order date</th>
                         {/*    <th width="10%">deadline</th>*/}
                         </tr>

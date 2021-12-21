@@ -1,15 +1,19 @@
 package com.mati.domain.order;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.mati.domain.product.Product;
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
 @Table(name = Order.TABLE_NAME)
+@DynamicInsert
 @Getter
 @Setter
 @ToString
@@ -19,7 +23,7 @@ public class Order {
     public static final String CONFIG_TABLE_NAME = "config";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -30,11 +34,12 @@ public class Order {
     @Column(name = "quantity")
     private Long quantity;
 
+    @Column(name = "value")
+    private BigDecimal value;
+
+
     @Column(name = "order_date")
     private LocalDate orderDate;
-
-    @Column(name = "deadline")
-    private LocalDate deadline;
 
     @Override
     public boolean equals(Object o) {

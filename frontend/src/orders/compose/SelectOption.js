@@ -4,7 +4,7 @@ import Select from 'react-select';
 class SelectOption extends Component {
 
     emptyModule = {
-        items: []
+        options: []
     }
 
     constructor(props) {
@@ -23,15 +23,20 @@ class SelectOption extends Component {
 
     handleChange = (selectedOption) => {
         this.setState({selectedOption: selectedOption});
+        const id = this.state.module.id;
+        console.log("AASDAS")
+        console.log({moduleId: id, itemId: selectedOption.value, price: selectedOption.price})
+        this.props.onChange({moduleId: id, itemId: selectedOption.value, price: selectedOption.price});
     }
 
     render() {
-        const items = this.state.module.items;
+        const options = this.state.module.options;
 
-        const itemOptions = items.map(item => {
+        const itemOptions = options.map(option => {
                 return {
-                    value: item.id,
-                    label: item.name
+                    value: option.item.id,
+                    label: option.item.name,
+                    price: option.price
                 }
             }
         )
@@ -43,6 +48,8 @@ class SelectOption extends Component {
             options={itemOptions}
             onChange={this.handleChange}
         />
+
+        console.log(this.state)
 
         return (
             <Fragment>

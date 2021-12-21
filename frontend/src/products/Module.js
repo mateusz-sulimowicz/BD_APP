@@ -4,7 +4,7 @@ import {Table} from "reactstrap";
 class Module extends Component {
 
     emptyModule = {
-        items: []
+        options: []
     }
 
     constructor(props) {
@@ -19,10 +19,10 @@ class Module extends Component {
     }
 
     render() {
-        const items = this.state.module.items;
-        const itemList = items.map(item =>
-            <tr key={item.id}>
-                <td>{item.name}</td>
+        const options = this.state.module.options;
+        const optionList = options.map(option =>
+            <tr key={option.item.id}>
+                <td>{option.item.name}</td>
             </tr>
         )
 
@@ -34,7 +34,7 @@ class Module extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                {itemList}
+                {optionList}
                 </tbody>
             </Table>
         )

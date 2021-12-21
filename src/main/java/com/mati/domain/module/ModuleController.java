@@ -46,7 +46,7 @@ public class ModuleController {
                 .orElseThrow(RuntimeException::new);
 
         currentModule.setName(module.getName());
-        currentModule.setItems(module.getItems());
+        currentModule.setOptions(module.getOptions());
         currentModule = repository.save(module);
 
         return ResponseEntity.ok(currentModule);
