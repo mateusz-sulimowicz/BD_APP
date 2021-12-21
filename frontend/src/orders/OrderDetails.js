@@ -55,6 +55,16 @@ class OrderDetails extends Component {
                                 Product: {order.product.name}
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                Unit price: {order.value}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Quantity: {order.quantity}
+                            </td>
+                        </tr>
                         </tbody>
                     </Table>
                     {pickedOptions}
