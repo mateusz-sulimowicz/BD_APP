@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Container, Table} from "reactstrap";
-import AppNavBar from "../util/AppNavBar";
 import Order from "./Order"
 
 class OrderList extends Component {
@@ -27,7 +26,7 @@ class OrderList extends Component {
 
         return (
             <div>
-                <AppNavBar/>
+                
                 <Container fluid>
                     <Table className="mt-4">
                         <thead>
@@ -36,7 +35,7 @@ class OrderList extends Component {
                             <th width="20%">product</th>
                             <th width="5%">quantity</th>
                             <th width="10%">order date</th>
-                            <th width="10%">deadline</th>
+                        {/*    <th width="10%">deadline</th>*/}
                         </tr>
                         </thead>
                         <tbody>

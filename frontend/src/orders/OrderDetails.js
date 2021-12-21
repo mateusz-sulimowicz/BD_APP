@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Container, Table} from "reactstrap";
-import AppNavbar from "../util/AppNavBar";
 import PickedOption from "./PickedOption";
 
 class OrderDetails extends Component {
@@ -36,7 +35,7 @@ class OrderDetails extends Component {
 
         return (
             <div>
-                <AppNavbar/>
+                
 
                 <Container fluid>
                     <Table className="mt-4">
@@ -72,7 +71,7 @@ class OrderDetails extends Component {
 
         return (
             <div>
-                <AppNavbar/>
+                
 
                 <Container fluid>
                     <div style={{float: 'right'}}>

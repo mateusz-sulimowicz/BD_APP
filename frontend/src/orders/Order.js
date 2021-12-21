@@ -34,9 +34,9 @@ class Order extends Component {
                 <td>
                     {orderDate}
                 </td>
-                <td>
+         {/*       <td>
                     {deadline}
-                </td>
+                </td>*/}
 
 
             </tr>

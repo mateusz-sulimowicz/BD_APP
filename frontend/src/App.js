@@ -6,17 +6,21 @@ import Home from "./home/Home";
 import ProductDetails from "./products/ProductDetails";
 import OrderList from "./orders/OrderList";
 import OrderDetails from "./orders/OrderDetails"
+import ComposeOrder from "./orders/compose/ComposeOrder";
+import AppNavBar from "./util/AppNavBar";
 
 class App extends Component {
     render() {
         return (
           <Router>
+              <AppNavBar/>
               <Switch>
+                  <Route path="/products/composeOrder/:id" component={ComposeOrder}/>
                   <Route path="/products/:id" component={ProductDetails}/>
                   <Route path="/products" exact={true} component={ProductList}/>
                   <Route path="/orders/:id" component={OrderDetails}/>
                   <Route path="/orders" exact={true} component={OrderList}/>
-                  <Route path="/home" exact={true} component={Home}/>
+                  <Route path="/" exact={true} component={Home}/>
               </Switch>
           </Router>
         );

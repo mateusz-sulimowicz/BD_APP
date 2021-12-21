@@ -8,7 +8,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <AppNavbar/>
+                
                 <Container fluid>
                 </Container>
             </div>

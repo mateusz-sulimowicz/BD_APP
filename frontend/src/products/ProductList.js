@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Container, Table} from 'reactstrap';
-import AppNavBar from '../util/AppNavBar';
 import Product from "./Product"
 
 class ProductList extends Component {
@@ -40,7 +39,7 @@ class ProductList extends Component {
 
         return (
             <div>
-                <AppNavBar/>
+                
                 <Container fluid>
                     <Table className="mt-4">
                         <thead>

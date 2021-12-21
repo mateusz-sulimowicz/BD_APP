@@ -16,7 +16,7 @@ export default class AppNavbar extends Component {
 
     render() {
         return <Navbar  color="dark" dark expand="md">
-            <NavbarBrand href="/home">Home</NavbarBrand>
+            <NavbarBrand href="/">Home</NavbarBrand>
             <Nav className="me-auto">
                 <NavLink href="/products">Products</NavLink>
                 <NavLink href="/orders">Orders</NavLink>

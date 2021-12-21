@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Button, Container} from "reactstrap";
-import AppNavbar from "../util/AppNavBar";
+import AppNavBar from "../util/AppNavBar";
 import Module from "./Module";
+import {Link} from "react-router-dom";
 
 class ProductDetails extends Component {
 
@@ -27,14 +28,18 @@ class ProductDetails extends Component {
 
         const modulesList = modules
             .map(module => <Module data={module}/>);
-
         return (
             <div>
-                <AppNavbar/>
+                
 
                 <Container fluid>
                     <div style={{float: 'right'}}>
-                        <Button color="success">Order now</Button>
+                        <Button color="success">
+                            <Link to={`/products/composeOrder/${product.id}`}>
+                                Order now
+                            </Link>
+                        </Button>
+
                     </div>
                     <h3>
                         {this.state.product.name}
