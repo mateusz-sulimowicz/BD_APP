@@ -24,9 +24,7 @@ class SelectOption extends Component {
     handleChange = (selectedOption) => {
         this.setState({selectedOption: selectedOption});
         const id = this.state.module.id;
-        console.log("AASDAS")
-        console.log({moduleId: id, itemId: selectedOption.value, price: selectedOption.price})
-        this.props.onChange({moduleId: id, itemId: selectedOption.value, price: selectedOption.price});
+        this.props.onChange({moduleId: id, item: selectedOption.value, price: selectedOption.price});
     }
 
     render() {
@@ -34,8 +32,8 @@ class SelectOption extends Component {
 
         const itemOptions = options.map(option => {
                 return {
-                    value: option.item.id,
-                    label: option.item.name,
+                    value: option.item,
+                    label: option.item.name + " +" + option.price,
                     price: option.price
                 }
             }

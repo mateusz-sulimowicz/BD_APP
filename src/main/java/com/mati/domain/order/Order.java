@@ -37,7 +37,6 @@ public class Order {
     @Column(name = "value")
     private BigDecimal value;
 
-
     @Column(name = "order_date")
     private LocalDate orderDate;
 

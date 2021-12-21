@@ -2,6 +2,7 @@ package com.mati.domain.order;
 
 
 import com.mati.domain.product.ProductRepository;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,6 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) throws URISyntaxException {
-        System.out.println(order);
         Order savedOrder = repository.save(order);
         return ResponseEntity
                 .created(new URI("/api/orders/" + order.getId()))
@@ -62,6 +62,12 @@ public class OrderController {
     public ResponseEntity<Order> deleteOrder(@PathVariable Long id) {
         repository.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @Data
+    public static class OrderConfig {
+        private Long itemId;
+        private Long orderId;
     }
 
 }

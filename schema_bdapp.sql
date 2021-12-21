@@ -36,10 +36,11 @@ create table product_order
 
 create table config
 (
-    order_id  integer not null,
-    module_id integer not null,
-    item_id   integer not null,
-    constraint config_pk PRIMARY KEY (order_id, module_id)
+     id         integer generated always as identity primary key,
+    order_id  integer not null references product_order,
+    module_id integer not null references module,
+    item_id   integer not null references item,
+    constraint config_pk UNIQUE (order_id, module_id)
 );
 
 create table option
@@ -113,9 +114,9 @@ select *
 from product_order;
 
 INSERT INTO config
-values (1, 1, 2);
+values (default, 1, 1, 2);
 INSERT INTO config
-values (1, 2, 4);
+values (default, 1, 2, 4);
 
 SELECT *
 from config;

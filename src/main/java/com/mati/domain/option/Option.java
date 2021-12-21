@@ -19,6 +19,7 @@ public class Option {
     public static final String TABLE_NAME = "option";
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
