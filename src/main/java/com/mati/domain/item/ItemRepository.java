@@ -1,5 +1,6 @@
 package com.mati.domain.item;
 
+import com.mati.domain.module.Module;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -7,6 +8,15 @@ import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {
+
+    @Query(
+            value = "SELECT i.* " +
+                    "FROM item i " +
+                    "WHERE i.id = :item_id",
+            nativeQuery = true
+    )
+    @Override
+    Optional<Item> findById(@Param("item_id") Long id);
 
     @Query(
             value = "SELECT i.* " +
