@@ -70,7 +70,7 @@ class ProductEdit extends Component {
                                onChange={this.handleChange} autoComplete="basePrice"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button disabled={this.state.basePrice <= 0 || this.state.name === ''}
+                        <Button disabled={this.state.product.basePrice <= 0 || this.state.product.name === ''}
                                 color="primary"
                                 type="submit">Save</Button>
                         <Button color="secondary" tag={Link} to="/products">Cancel</Button>
