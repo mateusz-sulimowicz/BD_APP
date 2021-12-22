@@ -10,20 +10,20 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public class ModuleDAO {
 
     static private final String FIND_ALL = "select * from module m";
 
     static private final String FIND_BY_ID = "select * from module m where m.id = :moduleId";
 
-    static private final String FIND_ALL_BY_PRODUCT = "select m.* from recipe " +
-            "r join module m " +
-            "on m.id = r.module_id where product_id = :productId";
+    static private final String FIND_ALL_BY_PRODUCT = "select m.* from module m where m.product_id = :productId";
 
     /*static private final String CREATE = "insert into option (item_id, module_id, price) " +
             "values (:itemid, :moduleId, :price)";

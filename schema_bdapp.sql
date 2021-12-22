@@ -16,6 +16,7 @@ create table product
 create table module
 (
     id   integer generated always as identity primary key,
+    product_id integer not null references product,
     name varchar not null
 );
 
@@ -51,13 +52,6 @@ create table option
     constraint option_pk PRIMARY KEY (module_id, item_id)
 );
 
-create table recipe
-(
-    product_id integer not null references product,
-    module_id  integer not null references module,
-    constraint recipe_pk PRIMARY KEY (product_id, module_id)
-);
-
 INSERT INTO product
 values (default, 'Iphone 7 Plus', 999);
 INSERT INTO product
@@ -68,9 +62,9 @@ INSERT INTO product
 values (default, 'Iphone 6S', 599);
 
 INSERT INTO module
-values (default, 'Storage');
+values (default, 1, 'Storage');
 INSERT INTO module
-values (default, 'Camera');
+values (default, 1, 'Camera');
 
 INSERT INTO item
 values (1, 'Storage 512 GB');
@@ -97,11 +91,6 @@ INSERT INTO option
 values (2, 3, 0);
 INSERT INTO option
 values (2, 4, 0);
-
-INSERT INTO recipe
-values (1, 1);
-INSERT INTO recipe
-values (1, 2);
 
 INSERT INTO product_order
 values (default, 1, 1000, default, default);

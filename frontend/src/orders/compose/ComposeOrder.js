@@ -67,7 +67,7 @@ class ComposeOrder extends Component {
         console.log("TYLE POLICZYLEM!: " + calculatedValue)
         let order = {
             value: calculatedValue,
-            product: this.state.product,
+            product: {id: this.state.product.id},
             quantity: 1,
             orderConfigs: []
         }
