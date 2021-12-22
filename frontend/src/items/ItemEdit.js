@@ -61,7 +61,7 @@ class ItemEdit extends Component {
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
                         <Label for="id">ID</Label>
-                        <Input type="text" name="id" id="id" value={item.id || ''}
+                        <Input type="number" name="id" id="id" value={item.id || ''}
                                onChange={this.handleChange}
                                disabled={this.props.match.params.id !== 'new'}
                                autoComplete="id"/>

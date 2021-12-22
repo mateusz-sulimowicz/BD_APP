@@ -44,7 +44,7 @@ class ProductList extends Component {
             <div>
                 
                 <Container fluid>
-                    <div className="float-right">
+                    <div style={{float: 'right'}}>
                         <Button color="success" tag={Link} to="/products/new">Add Product</Button>
                     </div>
                     <Table className="mt-4">

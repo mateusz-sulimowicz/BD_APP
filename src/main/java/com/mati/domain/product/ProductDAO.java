@@ -25,6 +25,8 @@ public class ProductDAO {
 
     static private final String CREATE = "insert into product (name, base_price) values (:name, :basePrice)";
 
+    static private final String UPDATE = "update product set name = :name, base_price = :basePrice where id = :id";
+
     static private final String DELETE = "delete from product where id = :productId";
 
     NamedParameterJdbcTemplate jdbcTemplate;
@@ -67,6 +69,17 @@ public class ProductDAO {
 
         Integer key = (Integer) holder.getKeys().get("id");
         product.setId(key.longValue());
+
+        return product;
+    }
+
+    public Product update(Product product) {
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("id", product.getId())
+                .addValue("name", product.getName())
+                .addValue("basePrice", product.getBasePrice());
+
+        jdbcTemplate.update(UPDATE, parameters);
 
         return product;
     }

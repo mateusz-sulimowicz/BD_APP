@@ -47,6 +47,13 @@ public class ProductsController {
 				.body(savedProduct);
 	}
 
+	@PutMapping("/{id}")
+	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+		productDAO.update(product);
+
+		return ResponseEntity.ok(product);
+	}
+
 	/*
 
 

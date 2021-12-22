@@ -34,16 +34,16 @@ class ProductDetails extends Component {
 
                 <Container fluid>
                     <div style={{float: 'right'}}>
-                        <Button color="success">
-                            <Link to={`/products/composeOrder/${product.id}`}>
+                            <Button color="success"
+                                    tag={Link}
+                                    to={`/products/composeOrder/${product.id}`}>
                                 Order now
-                            </Link>
-                        </Button>
+                            </Button>
+                        </div>
 
-                    </div>
-                    <h3>
-                        {this.state.product.name}
-                    </h3>
+                        <h3>
+                            {this.state.product.name}
+                        </h3>
                     <h3>
                         Base price: {this.state.product.basePrice}
                     </h3>
