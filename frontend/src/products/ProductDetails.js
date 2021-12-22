@@ -44,6 +44,9 @@ class ProductDetails extends Component {
                     <h3>
                         {this.state.product.name}
                     </h3>
+                    <h3>
+                        Base price: {this.state.product.basePrice}
+                    </h3>
                     <p>
                         Description: bla bla bla
                     </p>

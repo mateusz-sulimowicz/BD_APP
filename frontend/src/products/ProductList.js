@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Container, Table} from 'reactstrap';
+import {Button, Container, Table} from 'reactstrap';
 import Product from "./Product"
+import {Link} from "react-router-dom";
 
 class ProductList extends Component {
 
@@ -43,10 +44,15 @@ class ProductList extends Component {
             <div>
                 
                 <Container fluid>
+                    <div className="float-right">
+                        <Button color="success" tag={Link} to="/products/new">Add Product</Button>
+                    </div>
                     <Table className="mt-4">
                         <thead>
                         <tr>
-                            <th width="30%">Please select a product.</th>
+                            <th width="10%">Product</th>
+                            <th width="5%">Price</th>
+                            <th width="5%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>

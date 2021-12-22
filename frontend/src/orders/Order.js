@@ -24,7 +24,7 @@ class Order extends Component {
                 </td>
                 <td>
                     <Button color="link">
-                        <Link to={"/products/"+ productId}>
+                        <Link to={"/products/details/" + productId}>
                             {productName}
                         </Link>
                     </Button>
