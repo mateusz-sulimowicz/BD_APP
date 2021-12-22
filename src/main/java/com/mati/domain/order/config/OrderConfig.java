@@ -11,6 +11,8 @@ import javax.persistence.*;
 @Table(name = "config")
 public class OrderConfig {
 
+    public static final String TABLE_NAME = "config";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

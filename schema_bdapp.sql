@@ -22,7 +22,8 @@ create table module
 create table item
 (
     id   integer generated always as identity primary key,
-    name varchar not null
+    name varchar not null,
+    constraint item_unique UNIQUE (name)
 );
 
 create table product_order

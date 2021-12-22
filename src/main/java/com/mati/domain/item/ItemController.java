@@ -15,20 +15,22 @@ public class ItemController {
 
     private final Logger logger = Logger.getLogger(String.valueOf(ItemController.class));
     private final ItemRepository repository;
+    private final ItemDAO itemDAO;
 
     @Autowired
-    public ItemController(ItemRepository repository) {
+    public ItemController(ItemRepository repository, ItemDAO itemDAO) {
         this.repository = repository;
+        this.itemDAO = itemDAO;
     }
 
     @GetMapping
     public List<Item> getItems() {
-        return repository.findAll();
+        return itemDAO.findAll();
     }
 
     @GetMapping("/{id}")
     public Item getItem(@PathVariable Long id) {
-        return repository
+        return itemDAO
                 .findById(id)
                 .orElseThrow(RuntimeException::new);
     }
@@ -36,14 +38,14 @@ public class ItemController {
     @GetMapping("/orderconfig")
     public Item getItemByOrderAndModule(@RequestParam(name = "orderId") Long orderId,
                                         @RequestParam(name = "moduleId") Long moduleId) {
-        return repository
+        return itemDAO
                 .findByOrderAndModule(orderId, moduleId)
                 .orElseThrow(RuntimeException::new);
     }
 
     @PostMapping
     public ResponseEntity<Item> createItem(@RequestBody Item item) throws URISyntaxException {
-        Item savedItem = repository.save(item);
+        Item savedItem = itemDAO.create(item);
         return ResponseEntity
                 .created(new URI("/api/items/" + item.getId()))
                 .body(savedItem);
