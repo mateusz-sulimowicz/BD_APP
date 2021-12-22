@@ -53,19 +53,19 @@ public class ItemController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Item> updateItem(@PathVariable Long id, @RequestBody Item item) {
-        Item currentItem = repository
+        Item currentItem = itemDAO
                 .findById(id)
                 .orElseThrow(RuntimeException::new);
 
         currentItem.setName(item.getName());
-        currentItem = repository.save(item);
+        currentItem = itemDAO.update(item);
 
         return ResponseEntity.ok(currentItem);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Item> deleteItem(@PathVariable Long id) {
-        repository.deleteById(id);
+        itemDAO.deleteById(id);
         return ResponseEntity.ok().build();
     }
 

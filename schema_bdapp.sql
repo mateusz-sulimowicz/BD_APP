@@ -21,9 +21,8 @@ create table module
 
 create table item
 (
-    id   integer generated always as identity primary key,
-    name varchar not null,
-    constraint item_unique UNIQUE (name)
+    id integer not null primary key,
+    name varchar not null
 );
 
 create table product_order
@@ -76,13 +75,13 @@ INSERT INTO module
 values (default, 'Camera');
 
 INSERT INTO item
-values (default, 'Storage 512 GB');
+values (1, 'Storage 512 GB');
 INSERT INTO item
-values (default, 'Storage 256 GB');
+values (2, 'Storage 256 GB');
 INSERT INTO item
-values (default, 'Front Camera 16 Mpx');
+values (3, 'Front Camera 16 Mpx');
 INSERT INTO item
-values (default, 'Back Camera 32 Mpx');
+values (4, 'Back Camera 32 Mpx');
 
 select *
 from product;
@@ -130,5 +129,5 @@ WHERE c.order_id = 1
 
 select * from product_order;
 
-delete from product_order where id = 13
 
+select * from item;

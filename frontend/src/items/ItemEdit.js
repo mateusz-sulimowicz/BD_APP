@@ -31,14 +31,17 @@ class ItemEdit extends Component {
         let item = {...this.state.item};
         item[name] = value;
         this.setState({item});
+        console.log(this.state.item)
     }
 
     async handleSubmit(event) {
         event.preventDefault();
-        const {item} = this.state;
+        const item = this.state.item;
 
-        await fetch('/api/items' + (item.id ? '/' + item.id : ''), {
-            method: (item.id) ? 'PUT' : 'POST',
+        console.log(item);
+
+        await fetch('/api/items' + (this.props.match.params.id !== 'new' ? '/' + item.id : ''), {
+            method: this.props.match.params.id !== 'new' ? 'PUT' : 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -50,13 +53,16 @@ class ItemEdit extends Component {
 
     render() {
         const {item} = this.state;
-        const title = <h2>{item.id ? 'Edit Item' : 'Add Item'}</h2>;
+        const title = <h2>{this.props.match.params.id !== 'new' ? 'Edit Item' : 'Add Item'}</h2>;
 
         return <div>
             <Container>
                 {title}
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup>
+                        <Label for="id">ID</Label>
+                        <Input type="text" name="id" id="id" value={item.id || ''}
+                               onChange={this.handleChange} autoComplete="id"/>
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>

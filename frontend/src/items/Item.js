@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from "reactstrap";
+import {Button, ButtonGroup} from "reactstrap";
 import {Link} from "react-router-dom";
 
 class Item extends Component {
@@ -10,12 +10,18 @@ class Item extends Component {
         const name = this.props.data.name;
 
         return (
-            <tr>
+            <tr key={id}>
                 <td>
                     {id}
                 </td>
                 <td>
                     {name}
+                </td>
+                <td>
+                    <ButtonGroup>
+                        <Button size="sm" color="primary" tag={Link} to={`/items/${id}`}>Edit</Button>
+                        <Button size="sm" color="danger" onClick={() => this.props.onRemoved(id)}>Delete</Button>
+                    </ButtonGroup>
                 </td>
             </tr>
         )

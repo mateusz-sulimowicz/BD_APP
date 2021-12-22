@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, ButtonGroup, Container, Table} from "reactstrap";
 import {Link} from "react-router-dom";
+import Item from "./Item";
 
 class ItemList extends Component {
 
@@ -16,9 +17,12 @@ class ItemList extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(() => {
-            let updatedItems = [...this.state.items].filter(i => i.id !== id);
-            this.setState({items: updatedItems});
+        }).then(response => {
+            console.log(response)
+            if (response.ok) {
+                let updatedItems = [...this.state.items].filter(i => i.id !== id);
+                this.setState({items: updatedItems});
+            }
         });
         this.props.history.push('/items');
     }
@@ -34,21 +38,7 @@ class ItemList extends Component {
 
         console.log(this.state.items);
         const itemList = items
-            .map(item =>
-                <tr key={item.id}>
-                    <td>
-                        {item.id}
-                    </td>
-                    <td>
-                        {item.name}
-                    </td>
-                    <td>
-                        <ButtonGroup>
-                            <Button size="sm" color="primary" tag={Link} to={`/items/${item.id}`}>Edit</Button>
-                            <Button size="sm" color="danger" onClick={() => this.props.remove(item.id)}>Delete</Button>
-                        </ButtonGroup>
-                    </td>
-                </tr>);
+            .map(item => <Item data={item} onRemoved={(id) => this.remove(id)}/>);
 
         return (
             <div>
