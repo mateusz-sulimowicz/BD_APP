@@ -28,6 +28,7 @@ public class ProductRowMapper implements RowMapper<Product> {
         Product product = new Product();
         product.setName(rs.getString("name"));
         product.setId(rs.getLong("id"));
+        product.setBasePrice(rs.getBigDecimal("base_price"));
 
         List<Module> modules = moduleDAO.findAllByProductId(product.getId());
         product.setModules(modules);
