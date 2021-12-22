@@ -33,7 +33,7 @@ class ProductEdit extends Component {
         let product = {...this.state.product};
         product[name] = value;
         this.setState({product});
-        console.log(this.state.item)
+        console.log(this.state.product)
     }
 
     async handleSubmit(event) {
@@ -65,9 +65,14 @@ class ProductEdit extends Component {
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={product.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>
+                        <Label for="basePrice">Base Price</Label>
+                        <Input type="number" name="basePrice" id="basePrice" value={product.basePrice || ''}
+                               onChange={this.handleChange} autoComplete="basePrice"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
+                        <Button disabled={this.state.basePrice <= 0 || this.state.name === ''}
+                                color="primary"
+                                type="submit">Save</Button>
                         <Button color="secondary" tag={Link} to="/products">Cancel</Button>
                     </FormGroup>
                 </Form>

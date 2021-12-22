@@ -38,6 +38,15 @@ public class ProductsController {
 		productDAO.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
+
+	@PostMapping
+	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
+		Product savedProduct = productDAO.create(product);
+		return ResponseEntity
+				.created(new URI("/api/products/" + product.getId()))
+				.body(savedProduct);
+	}
+
 	/*
 
 

@@ -67,7 +67,7 @@ class ItemEdit extends Component {
                                autoComplete="id"/>
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
-                               onChange={this.handleChange} autoComplete="name"/>
+                               onChange={this.handleChange} autoComplete="basePrice"/>
                     </FormGroup>
                     <FormGroup>
                         <Button color="primary" type="submit">Save</Button>{' '}

@@ -1,16 +1,14 @@
 package com.mati.domain.product;
 
 import com.mati.domain.item.Item;
-import com.mati.domain.item.ItemRowMapper;
 import com.mati.domain.module.Module;
 import com.mati.domain.module.ModuleDAO;
-import com.mati.domain.option.Option;
-import com.mati.domain.option.OptionRowMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +22,8 @@ public class ProductDAO {
     static private final String FIND_ALL = "select * from product p";
 
     static private final String FIND_BY_ID = "select * from product p where p.id = :productId";
+
+    static private final String CREATE = "insert into product (name, base_price) values (:name, :basePrice)";
 
     static private final String DELETE = "delete from product where id = :productId";
 
@@ -54,6 +54,21 @@ public class ProductDAO {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    public Product create(Product product) {
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("name", product.getName())
+                .addValue("basePrice", product.getBasePrice());
+
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(CREATE, parameters, holder);
+
+        Integer key = (Integer) holder.getKeys().get("id");
+        product.setId(key.longValue());
+
+        return product;
     }
 
     public void deleteById(Long id) {
