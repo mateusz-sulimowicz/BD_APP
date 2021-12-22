@@ -42,6 +42,12 @@ public class OrderController {
                 .body(savedOrder);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Order> deleteOrder(@PathVariable Long id) {
+        orderDAO.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
     /*
     @PutMapping("/{id}")
     public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order) {

@@ -29,6 +29,8 @@ public class OrderDAO {
     static private final String CREATE = "insert into product_order (product_id, quantity, value)" +
             "values (:productId, :quantity, :value)";
 
+    static private final String DELETE = "delete from product_order where id = :orderId";
+
     NamedParameterJdbcTemplate jdbcTemplate;
 
     OrderRowMapper rowMapper;
@@ -80,5 +82,13 @@ public class OrderDAO {
         return order;
     }
 
+    public void deleteById(Long id) {
+        orderConfigDAO.deleteByOrderId(id);
+
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("orderId", id);
+
+        jdbcTemplate.update(DELETE, parameters);
+    }
 
 }

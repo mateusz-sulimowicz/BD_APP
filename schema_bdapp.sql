@@ -118,3 +118,5 @@ select * from product_order;
 
 
 select * from item;
+
+select * from config;

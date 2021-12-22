@@ -26,6 +26,8 @@ public class OrderConfigDAO {
     static private final String CREATE = "insert into config(order_id, module_id, item_id) " +
             "values (:orderId, :moduleId, :itemId)";
 
+    static private final String DELETE_ALL_BY_ORDER_ID = "delete from config where order_id = :orderId";
+
     NamedParameterJdbcTemplate jdbcTemplate;
 
     OrderConfigRowMapper rowMapper;
@@ -57,18 +59,11 @@ public class OrderConfigDAO {
         return orderConfig;
     }
 
-    /*
-
-    public Optional<Order> findById(Long id) {
+    public void deleteByOrderId(Long id) {
         SqlParameterSource parameters = new MapSqlParameterSource("orderId", id);
 
-        try {
-            Order order = jdbcTemplate.queryForObject(FIND_BY_ID, parameters, rowMapper);
-            return Optional.of(order);
-        } catch (EmptyResultDataAccessException e) {
-            return Optional.empty();
-        }
-    }*/
+        jdbcTemplate.update(DELETE_ALL_BY_ORDER_ID, parameters);
+    }
 
 
 }

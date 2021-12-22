@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button} from "reactstrap";
+import {Button, ButtonGroup} from "reactstrap";
 import {Link} from "react-router-dom";
 
 class Order extends Component {
@@ -38,10 +38,11 @@ class Order extends Component {
                 <td>
                     {orderDate}
                 </td>
-         {/*       <td>
-                    {deadline}
-                </td>*/}
-
+                <td>
+                    <ButtonGroup>
+                        <Button size="sm" color="danger" onClick={() => this.props.onRemoved(id)}>Delete</Button>
+                    </ButtonGroup>
+                </td>
 
             </tr>
         )

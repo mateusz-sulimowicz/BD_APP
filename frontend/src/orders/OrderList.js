@@ -16,13 +16,29 @@ class OrderList extends Component {
 
     }
 
+    async remove(id) {
+        await fetch(`/api/orders/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response)
+            if (response.ok) {
+                let updatedOrders = [...this.state.orders].filter(i => i.id !== id);
+                this.setState({orders: updatedOrders});
+            }
+        });
+    }
+
     render() {
         const orders = this.state.orders;
 
         console.log(this.state.orders);
         const orderList = orders
             .map(order =>
-                <Order key={order.id} data={order}/>);
+                <Order key={order.id} onRemoved={(id) => this.remove(id)} data={order}/>);
 
         return (
             <div>

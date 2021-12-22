@@ -17,20 +17,6 @@ class ProductList extends Component {
             .then(fetchedProducts =>  this.setState({products: fetchedProducts}));
     }
 
-    /* async remove(id) {
-         await fetch('/api/products/${id}', {
-             method: 'DELETE',
-             headers: {
-                 'Accept': 'application/json',
-                 'Content-Type': 'application/json'
-             }
-         }).then(() => {
-             let updatedProducts = [...this.state.products]
-                 .filter(product => product.id !== id);
-             this.setState({products: updatedProducts})
-         });
-     }*/
-
     render() {
         const products = this.state.products;
 

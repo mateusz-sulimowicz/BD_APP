@@ -57,14 +57,12 @@ class ComposeOrder extends Component {
 
     async onOrderSubmitted() {
         let calculatedValue = this.state.product.basePrice;
-        console.log("TYLE POLICZYLEM!: " + calculatedValue)
 
         const options = this.state.selectedOptions;
         this.state.product.modules.forEach(function (module) {
             calculatedValue += options[module.id].price;
         })
 
-        console.log("TYLE POLICZYLEM!: " + calculatedValue)
         let order = {
             value: calculatedValue,
             product: {id: this.state.product.id},
@@ -78,8 +76,6 @@ class ComposeOrder extends Component {
 
         console.log(order)
 
-        console.log(JSON.stringify(order));
-
         let orderId;
         await fetch('/api/orders', {
             method: 'POST',
@@ -90,23 +86,6 @@ class ComposeOrder extends Component {
             body: JSON.stringify(order),
         }).then(response => response.json())
             .then(createdOrder => orderId = createdOrder.id)
-
-
-        console.log("ZWROCONO: " + orderId);
-
-        console.log(this.state.selectedOptions);
-
-       /* for (const module of this.state.product.modules) {
-            await fetch('/api/orderConfigs', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({itemId: options[module.id].item.id, moduleId: module.id, orderId}),
-            })
-        }*/
-
     }
 
 
