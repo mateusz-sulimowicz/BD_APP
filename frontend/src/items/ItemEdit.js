@@ -62,7 +62,9 @@ class ItemEdit extends Component {
                     <FormGroup>
                         <Label for="id">ID</Label>
                         <Input type="text" name="id" id="id" value={item.id || ''}
-                               onChange={this.handleChange} autoComplete="id"/>
+                               onChange={this.handleChange}
+                               disabled={this.props.match.params.id !== 'new'}
+                               autoComplete="id"/>
                         <Label for="name">Name</Label>
                         <Input type="text" name="name" id="name" value={item.name || ''}
                                onChange={this.handleChange} autoComplete="name"/>

@@ -122,6 +122,7 @@ class ComposeOrder extends Component {
                 <Button onClick={() => this.onOrderSubmitted()} disabled={!this.state.canSubmit}>
                     Submit
                 </Button>
+                <Button color="secondary" tag={Link} to="/products">Cancel</Button>
             </div>
 
         )
