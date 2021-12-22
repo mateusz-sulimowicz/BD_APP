@@ -19,6 +19,8 @@ public class OptionDAO {
 
     static private final String FIND_ALL_BY_MODULE_ID = "select * from option o where o.module_id = :moduleId";
 
+    static private final String DELETE_BY_MODULE_ID = "delete from option where module_id = :moduleId";
+
    /* static private final String FIND_BY_ID = "select * from option o where o.id = :option_id";
 
     static private final String CREATE = "insert into option (item_id, module_id, price) " +
@@ -42,6 +44,12 @@ public class OptionDAO {
         SqlParameterSource parameters = new MapSqlParameterSource("moduleId", id);
 
         return jdbcTemplate.query(FIND_ALL_BY_MODULE_ID, parameters, rowMapper);
+    }
+
+    public void deleteByModuleId(Long id) {
+        SqlParameterSource parameters = new MapSqlParameterSource("moduleId", id);
+
+        jdbcTemplate.update(DELETE_BY_MODULE_ID, parameters);
     }
 
    /* public Item create(Item item) {

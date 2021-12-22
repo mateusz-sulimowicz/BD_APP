@@ -17,11 +17,27 @@ class ProductList extends Component {
             .then(fetchedProducts =>  this.setState({products: fetchedProducts}));
     }
 
+    async remove(id) {
+        await fetch(`/api/products/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response)
+            if (response.ok) {
+                let updatedProducts = [...this.state.products].filter(i => i.id !== id);
+                this.setState({products: updatedProducts});
+            }
+        });
+    }
+
     render() {
         const products = this.state.products;
 
         const productsList = products
-            .map(product => <Product key={product.id} data={product}/>);
+            .map(product => <Product key={product.id} onRemoved={(id) => this.remove(id)} data={product}/>);
 
         return (
             <div>

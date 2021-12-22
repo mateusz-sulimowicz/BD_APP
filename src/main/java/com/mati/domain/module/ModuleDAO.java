@@ -3,6 +3,7 @@ package com.mati.domain.module;
 import com.mati.domain.item.Item;
 import com.mati.domain.item.ItemRowMapper;
 import com.mati.domain.option.Option;
+import com.mati.domain.option.OptionDAO;
 import com.mati.domain.option.OptionRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -25,6 +26,8 @@ public class ModuleDAO {
 
     static private final String FIND_ALL_BY_PRODUCT = "select m.* from module m where m.product_id = :productId";
 
+    static private final String DELETE = "delete from module where id = :moduleId";
+
     /*static private final String CREATE = "insert into option (item_id, module_id, price) " +
             "values (:itemid, :moduleId, :price)";
 
@@ -38,13 +41,16 @@ public class ModuleDAO {
 
     ModuleRowMapper moduleRowMapper;
 
-    @Autowired
+    OptionDAO optionDAO;
+
     public ModuleDAO(NamedParameterJdbcTemplate jdbcTemplate,
                      OptionRowMapper rowMapper,
-                     ModuleRowMapper moduleRowMapper) {
+                     ModuleRowMapper moduleRowMapper,
+                     OptionDAO optionDAO) {
         this.jdbcTemplate = jdbcTemplate;
         this.rowMapper = rowMapper;
         this.moduleRowMapper = moduleRowMapper;
+        this.optionDAO = optionDAO;
     }
 
     public List<Module> findAll() {
@@ -66,6 +72,14 @@ public class ModuleDAO {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    public void deleteById(Long id) {
+        optionDAO.deleteByModuleId(id);
+
+        SqlParameterSource parameters = new MapSqlParameterSource("moduleId", id);
+
+        jdbcTemplate.update(DELETE, parameters);
     }
 
 

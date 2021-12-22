@@ -24,7 +24,6 @@ class ItemList extends Component {
                 this.setState({items: updatedItems});
             }
         });
-        this.props.history.push('/items');
     }
 
     componentDidMount() {

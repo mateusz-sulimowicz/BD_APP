@@ -1,5 +1,4 @@
 drop table product cascade;
-drop table recipe cascade;
 drop table module cascade;
 drop table item cascade;
 drop table product_order cascade;
@@ -120,3 +119,5 @@ select * from product_order;
 select * from item;
 
 select * from config;
+
+select * from module;
