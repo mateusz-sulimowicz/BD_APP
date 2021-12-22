@@ -45,12 +45,10 @@ create table config
 
 create table option
 (
-    id        integer generated always as identity primary key,
     module_id integer not null references module,
     item_id   integer not null references item,
     price     numeric not null,
-    count     integer not null,
-    constraint option_fk UNIQUE (module_id, item_id)
+    constraint option_pk PRIMARY KEY (module_id, item_id)
 );
 
 create table recipe
@@ -91,14 +89,14 @@ select *
 from item;
 
 INSERT INTO option
-values (default, 1, 1, 0, 1);
+values (1, 1, 0);
 INSERT INTO option
-values (default, 1, 2, 299, 1);
+values (1, 2, 299);
 
 INSERT INTO option
-values (default, 2, 3, 0, 1);
+values (2, 3, 0);
 INSERT INTO option
-values (default, 2, 4, 0, 1);
+values (2, 4, 0);
 
 INSERT INTO recipe
 values (1, 1);

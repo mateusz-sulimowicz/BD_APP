@@ -1,7 +1,6 @@
 package com.mati.domain.order;
 
 
-import com.mati.domain.product.ProductRepository;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,28 +14,26 @@ import java.util.List;
 @RequestMapping("/api/orders")
 public class OrderController {
 
-    private final OrderRepository repository;
-    private final ProductRepository productRepository;
+    private final OrderDAO orderDAO;
 
     @Autowired
-    public OrderController(OrderRepository repository, ProductRepository productRepository) {
-        this.repository = repository;
-        this.productRepository = productRepository;
+    public OrderController(OrderDAO orderDAO) {
+        this.orderDAO = orderDAO;
     }
 
     @GetMapping
     public List<Order> getOrders() {
-        return repository.findAll();
+        return orderDAO.findAll();
     }
 
     @GetMapping("/{id}")
     public Order getOrder(@PathVariable Long id) {
-        return repository
+        return orderDAO
                 .findById(id)
                 .orElseThrow(RuntimeException::new);
     }
 
-    @PostMapping
+   /* @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) throws URISyntaxException {
         Order savedOrder = repository.save(order);
         return ResponseEntity
@@ -68,6 +65,6 @@ public class OrderController {
     public static class OrderConfig {
         private Long itemId;
         private Long orderId;
-    }
+    }*/
 
 }

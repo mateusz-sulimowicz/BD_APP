@@ -36,11 +36,11 @@ public class ItemDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    List<Item> findAll() {
+    public List<Item> findAll() {
         return jdbcTemplate.query(FIND_ALL, new ItemRowMapper());
     }
 
-    Optional<Item> findById(Long id) {
+    public Optional<Item> findById(Long id) {
         SqlParameterSource parameters = new MapSqlParameterSource("item_id", id);
 
         try {
@@ -51,7 +51,7 @@ public class ItemDAO {
         }
     }
 
-    Optional<Item> findByOrderAndModule(Long orderId, Long moduleId) {
+    public Optional<Item> findByOrderAndModule(Long orderId, Long moduleId) {
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("order_id", orderId)
                 .addValue("module_id", moduleId);

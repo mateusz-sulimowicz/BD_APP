@@ -1,6 +1,7 @@
 package com.mati.domain.product;
 
 import com.mati.domain.module.Module;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -11,32 +12,18 @@ import java.util.Objects;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = Product.TABLE_NAME)
-@Getter
-@Setter
-@ToString
+@Data
 public class Product {
 
     public static final String TABLE_NAME = "product";
     public static final String RECIPE_TABLE_NAME = "recipe";
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "base_price", nullable = false)
     private BigDecimal basePrice;
 
-    @OneToMany
-    @JoinTable(name = RECIPE_TABLE_NAME,
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "module_id"))
-    @ToString.Exclude
     private List<Module> modules;
 
     @Override

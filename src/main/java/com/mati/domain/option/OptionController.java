@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/options")
 public class OptionController {
+/*
 
     private final OptionRepository repository;
 
@@ -58,5 +59,6 @@ public class OptionController {
         repository.deleteById(id);
         return ResponseEntity.ok().build();
     }
+*/
 
 }

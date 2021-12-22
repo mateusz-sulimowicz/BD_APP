@@ -12,24 +12,26 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/products")
 public class ProductsController {
 
-	private final ProductRepository repository;
+
+	private final ProductDAO productDAO;
 
 	@Autowired
-	public ProductsController(ProductRepository productRepository) {
-		this.repository = productRepository;
+	public ProductsController(ProductDAO productDAO) {
+		this.productDAO = productDAO;
 	}
 
 	@GetMapping
 	public List<Product> getProducts() {
-		return repository.findAll();
+		return productDAO.findAll();
 	}
 
 	@GetMapping("/{id}")
 	public Product getProduct(@PathVariable Long id) {
-		return repository
+		return productDAO
 				.findById(id)
 				.orElseThrow(RuntimeException::new);
 	}
+/*
 
 	@PostMapping
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
@@ -56,5 +58,6 @@ public class ProductsController {
 		repository.deleteById(id);
 		return ResponseEntity.ok().build();
 	}
+*/
 
 }

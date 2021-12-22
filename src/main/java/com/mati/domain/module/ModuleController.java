@@ -12,26 +12,27 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/modules")
 public class ModuleController {
 
-    private final ModuleRepository repository;
+
+    private final ModuleDAO moduleDAO;
 
     @Autowired
-    public ModuleController(ModuleRepository moduleRepository) {
-        this.repository = moduleRepository;
+    public ModuleController(ModuleDAO moduleDAO) {
+        this.moduleDAO = moduleDAO;
     }
 
     @GetMapping
     public List<Module> getModules() {
-        return repository.findAll();
+        return moduleDAO.findAll();
     }
 
     @GetMapping("/{id}")
     public Module getModule(@PathVariable Long id) {
-        return repository
+        return moduleDAO
                 .findById(id)
                 .orElseThrow(RuntimeException::new);
     }
 
-    @PostMapping
+   /* @PostMapping
     public ResponseEntity<Module> createModule(@RequestBody Module module) throws URISyntaxException {
         Module savedModule = repository.save(module);
         return ResponseEntity
@@ -56,6 +57,6 @@ public class ModuleController {
     public ResponseEntity<Module> deleteModule(@PathVariable Long id) {
         repository.deleteById(id);
         return ResponseEntity.ok().build();
-    }
+    }*/
 
 }

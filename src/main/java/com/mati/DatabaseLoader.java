@@ -1,15 +1,5 @@
 package com.mati;
 
-import com.mati.domain.module.Module;
-import com.mati.domain.module.ModuleRepository;
-import com.mati.domain.product.Product;
-import com.mati.domain.product.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
-
-import java.math.BigDecimal;
-
 /*@Component
 public class DatabaseLoader implements CommandLineRunner {
 

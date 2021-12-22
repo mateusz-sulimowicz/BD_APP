@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.*;
 public class ItemController {
 
     private final Logger logger = Logger.getLogger(String.valueOf(ItemController.class));
-    private final ItemRepository repository;
     private final ItemDAO itemDAO;
 
     @Autowired
-    public ItemController(ItemRepository repository, ItemDAO itemDAO) {
-        this.repository = repository;
+    public ItemController(ItemDAO itemDAO) {
         this.itemDAO = itemDAO;
     }
 
