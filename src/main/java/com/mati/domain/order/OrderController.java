@@ -33,14 +33,16 @@ public class OrderController {
                 .orElseThrow(RuntimeException::new);
     }
 
-   /* @PostMapping
+   @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) throws URISyntaxException {
-        Order savedOrder = repository.save(order);
+       System.out.println(order);
+        Order savedOrder = orderDAO.create(order);
         return ResponseEntity
                 .created(new URI("/api/orders/" + order.getId()))
                 .body(savedOrder);
     }
 
+    /*
     @PutMapping("/{id}")
     public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order) {
         Order currentOrder = repository

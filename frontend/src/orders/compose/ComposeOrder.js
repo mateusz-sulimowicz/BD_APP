@@ -68,8 +68,15 @@ class ComposeOrder extends Component {
         let order = {
             value: calculatedValue,
             product: this.state.product,
-            quantity: 1
+            quantity: 1,
+            orderConfigs: []
         }
+
+        this.state.product.modules.forEach(function (module) {
+            order.orderConfigs.push({moduleId: module.id, itemId: options[module.id].item.id})
+        })
+
+        console.log(order)
 
         console.log(JSON.stringify(order));
 
@@ -89,7 +96,7 @@ class ComposeOrder extends Component {
 
         console.log(this.state.selectedOptions);
 
-        for (const module of this.state.product.modules) {
+       /* for (const module of this.state.product.modules) {
             await fetch('/api/orderConfigs', {
                 method: 'POST',
                 headers: {
@@ -98,7 +105,7 @@ class ComposeOrder extends Component {
                 },
                 body: JSON.stringify({itemId: options[module.id].item.id, moduleId: module.id, orderId}),
             })
-        }
+        }*/
 
     }
 

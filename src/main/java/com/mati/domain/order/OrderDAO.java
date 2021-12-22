@@ -1,5 +1,8 @@
 package com.mati.domain.order;
 
+import com.mati.domain.item.Item;
+import com.mati.domain.order.config.OrderConfig;
+import com.mati.domain.order.config.OrderConfigDAO;
 import com.mati.domain.product.Product;
 import com.mati.domain.product.ProductRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,26 +10,37 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
+@Transactional
 public class OrderDAO {
 
     static private final String FIND_ALL = "select * from product_order o";
 
     static private final String FIND_BY_ID = "select * from product_order o where o.id = :orderId";
 
+    static private final String CREATE = "insert into product_order (product_id, quantity, value)" +
+            "values (:productId, :quantity, :value)";
+
     NamedParameterJdbcTemplate jdbcTemplate;
 
     OrderRowMapper rowMapper;
 
-    @Autowired
-    public OrderDAO(NamedParameterJdbcTemplate jdbcTemplate, OrderRowMapper rowMapper) {
+    OrderConfigDAO orderConfigDAO;
+
+    public OrderDAO(NamedParameterJdbcTemplate jdbcTemplate,
+                    OrderRowMapper rowMapper,
+                    OrderConfigDAO orderConfigDAO) {
         this.jdbcTemplate = jdbcTemplate;
         this.rowMapper = rowMapper;
+        this.orderConfigDAO = orderConfigDAO;
     }
 
     public List<Order> findAll() {
@@ -42,6 +56,28 @@ public class OrderDAO {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    public Order create(Order order) {
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("productId", order.getProduct().getId())
+                .addValue("quantity", order.getQuantity())
+                .addValue("value", order.getValue());
+
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(CREATE, parameters, holder);
+
+        Integer key = (Integer) holder.getKeys().get("id");
+
+        order.setId(key.longValue());
+
+        for (OrderConfig c : order.getOrderConfigs()) {
+            c.setOrderId(order.getId());
+            orderConfigDAO.create(c);
+        }
+
+        return order;
     }
 
 
