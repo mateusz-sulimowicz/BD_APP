@@ -1,9 +1,6 @@
 package com.mati.domain.option;
 
-import com.mati.domain.item.Item;
-import com.mati.domain.item.ItemRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -11,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 @Transactional
@@ -20,6 +16,8 @@ public class OptionDAO {
     static private final String FIND_ALL_BY_MODULE_ID = "select * from option o where o.module_id = :moduleId";
 
     static private final String DELETE_BY_MODULE_ID = "delete from option where module_id = :moduleId";
+
+    static private final String DELETE = "delete from option where module_id = :moduleId AND item_id = :itemId";
 
    /* static private final String FIND_BY_ID = "select * from option o where o.id = :option_id";
 
@@ -50,6 +48,14 @@ public class OptionDAO {
         SqlParameterSource parameters = new MapSqlParameterSource("moduleId", id);
 
         jdbcTemplate.update(DELETE_BY_MODULE_ID, parameters);
+    }
+
+    public void deleteByModuleAndItemIds(Long moduleId, Long itemId) {
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("moduleId", moduleId)
+                .addValue("itemId", itemId);
+
+        jdbcTemplate.update(DELETE, parameters);
     }
 
    /* public Item create(Item item) {

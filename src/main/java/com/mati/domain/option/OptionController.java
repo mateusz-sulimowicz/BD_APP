@@ -11,6 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/options")
 public class OptionController {
+
+    private final OptionDAO optionDAO;
+
+    public OptionController(OptionDAO optionDAO) {
+        this.optionDAO = optionDAO;
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Option> deleteOption(@RequestParam Long moduleId, @RequestParam Long itemId) {
+        optionDAO.deleteByModuleAndItemIds(moduleId, itemId);
+        return ResponseEntity.ok().build();
+    }
+
 /*
 
     private final OptionRepository repository;

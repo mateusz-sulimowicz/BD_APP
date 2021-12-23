@@ -26,7 +26,8 @@ class ComposeOrder extends Component {
             .then(response => response.json())
             .then(fetchedDetails => this.setState({
                 product: fetchedDetails,
-                totalPrice: fetchedDetails.basePrice
+                totalPrice: fetchedDetails.basePrice,
+                canSubmit: fetchedDetails.modules.length === 0
             }));
     }
 
@@ -44,9 +45,14 @@ class ComposeOrder extends Component {
         const options = this.state.selectedOptions;
         let allOptionsFilledIn = true;
         let price = this.state.product.basePrice;
+
+        console.log(this.state);
+
+
         this.state.product.modules.forEach(function (module) {
             if (options[module.id] === undefined) {
                 allOptionsFilledIn = false;
+                console.log("O NIEEE!");
             } else {
                 price += options[module.id].price;
             }

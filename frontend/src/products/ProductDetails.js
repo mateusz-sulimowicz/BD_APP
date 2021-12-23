@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Container} from "reactstrap";
 import AppNavBar from "../util/AppNavBar";
-import Module from "./Module";
+import Module from "./module/Module";
 import {Link} from "react-router-dom";
 
 class ProductDetails extends Component {
@@ -40,7 +40,6 @@ class ProductDetails extends Component {
                                 Order now
                             </Button>
                         </div>
-
                         <h3>
                             {this.state.product.name}
                         </h3>
@@ -51,6 +50,11 @@ class ProductDetails extends Component {
                         Description: bla bla bla
                     </p>
                     <h4>Available Options:</h4>
+                    <Button color="primary"
+                            tag={Link}
+                            to={`/products/composeOrder/${product.id}`}>
+                        Add Module
+                    </Button>
                     {modulesList}
                 </Container>
             </div>
