@@ -49,12 +49,7 @@ public class OrderConfigDAO {
                 .addValue("moduleId", orderConfig.getModuleId())
                 .addValue("itemId", orderConfig.getItemId());
 
-        KeyHolder holder = new GeneratedKeyHolder();
-
-        jdbcTemplate.update(CREATE, parameters, holder);
-
-        Integer key = (Integer) holder.getKeys().get("id");
-        orderConfig.setId(key.longValue());
+        jdbcTemplate.update(CREATE, parameters);
 
         return orderConfig;
     }

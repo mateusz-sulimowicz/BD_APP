@@ -77,7 +77,7 @@ class ModuleEdit extends Component {
                                 type="submit">
                             Save
                         </Button>
-                        <Button color="secondary" tag={Link} to="/items">Cancel</Button>
+                        <Button color="secondary" tag={Link} to={`/products/details/${module.productId}`}>Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

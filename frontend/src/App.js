@@ -12,6 +12,7 @@ import ItemList from "./items/ItemList";
 import ItemEdit from "./items/ItemEdit"
 import ProductEdit from "./products/ProductEdit";
 import ModuleEdit from "./products/module/ModuleEdit";
+import OptionEdit from "./products/module/OptionEdit";
 
 class App extends Component {
     render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Router>
               <AppNavBar/>
               <Switch>
+                  <Route path='/options/:productId/:moduleId/:id' component={OptionEdit}/>
                   <Route path='/modules/:productId/:id' component={ModuleEdit}/>
                   <Route path='/items/:id' component={ItemEdit}/>
                   <Route path="/items"  exact={true} component={ItemList}/>

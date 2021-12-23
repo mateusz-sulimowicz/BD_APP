@@ -21,7 +21,6 @@ public class OrderConfigRowMapper implements RowMapper<OrderConfig> {
         c.setItemId(rs.getLong("item_id"));
         c.setOrderId(rs.getLong("order_id"));
         c.setModuleId(rs.getLong("module_id"));
-        c.setId(rs.getLong("id"));
 
         return c;
     }

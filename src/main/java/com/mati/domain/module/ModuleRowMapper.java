@@ -28,6 +28,7 @@ public class ModuleRowMapper implements RowMapper<Module> {
 
        module.setId(rs.getLong("ID"));
        module.setName(rs.getString("name"));
+        module.setProductId(rs.getLong("product_id"));
 
        List<Option> options = optionDAO.findByModuleId(module.getId());
        module.setOptions(options);

@@ -1,5 +1,6 @@
 package com.mati.domain.option;
 
+import com.mati.domain.order.config.OrderConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -18,6 +19,9 @@ public class OptionDAO {
     static private final String DELETE_BY_MODULE_ID = "delete from option where module_id = :moduleId";
 
     static private final String DELETE = "delete from option where module_id = :moduleId AND item_id = :itemId";
+
+    static private final String CREATE = "insert into option (module_id, item_id, price) " +
+            "values (:moduleId, :itemId, :price)";
 
    /* static private final String FIND_BY_ID = "select * from option o where o.id = :option_id";
 
@@ -57,6 +61,18 @@ public class OptionDAO {
 
         jdbcTemplate.update(DELETE, parameters);
     }
+
+    public Option create(Option option) {
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("moduleId", option.getModuleId())
+                .addValue("itemId", option.getItem().getId())
+                .addValue("price", option.getPrice());
+
+        jdbcTemplate.update(CREATE, parameters);
+
+        return option;
+    }
+
 
    /* public Item create(Item item) {
         SqlParameterSource parameters = new MapSqlParameterSource()

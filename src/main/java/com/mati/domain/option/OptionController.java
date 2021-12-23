@@ -24,6 +24,16 @@ public class OptionController {
         return ResponseEntity.ok().build();
     }
 
+
+    @PostMapping
+    public ResponseEntity<Option> createOption(@RequestBody Option option) throws URISyntaxException {
+        Option savedOption = optionDAO.create(option);
+        return ResponseEntity
+                .created(new URI("/api/options/" + option.getModuleId()))
+                .body(savedOption);
+    }
+
+
 /*
 
     private final OptionRepository repository;

@@ -7,8 +7,6 @@ public class OrderConfig {
 
     public static final String TABLE_NAME = "config";
 
-    private Long id;
-
     private Long orderId;
 
     private Long moduleId;
