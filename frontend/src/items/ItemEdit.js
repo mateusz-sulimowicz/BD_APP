@@ -6,6 +6,7 @@ class ItemEdit extends Component {
 
     emptyItem = {
         name: '',
+        id: 0
     };
 
     constructor(props) {
@@ -47,7 +48,7 @@ class ItemEdit extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(item),
-        });
+        }).then(response => console.log(response));
         this.props.history.push('/items');
     }
 
@@ -70,7 +71,11 @@ class ItemEdit extends Component {
                                onChange={this.handleChange} autoComplete="basePrice"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button color="primary" type="submit">Save</Button>{' '}
+                        <Button disabled={this.state.item.id <= 0 || this.state.item.name === ''}
+                                color="primary"
+                                type="submit">
+                            Save
+                        </Button>
                         <Button color="secondary" tag={Link} to="/items">Cancel</Button>
                     </FormGroup>
                 </Form>
