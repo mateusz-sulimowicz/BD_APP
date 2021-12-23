@@ -11,6 +11,7 @@ import AppNavBar from "./util/AppNavBar";
 import ItemList from "./items/ItemList";
 import ItemEdit from "./items/ItemEdit"
 import ProductEdit from "./products/ProductEdit";
+import ModuleEdit from "./products/module/ModuleEdit";
 
 class App extends Component {
     render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Router>
               <AppNavBar/>
               <Switch>
+                  <Route path='/modules/:productId/:id' component={ModuleEdit}/>
                   <Route path='/items/:id' component={ItemEdit}/>
                   <Route path="/items"  exact={true} component={ItemList}/>
                   <Route path="/products/composeOrder/:id" component={ComposeOrder}/>

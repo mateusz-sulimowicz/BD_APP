@@ -71,7 +71,7 @@ class ProductDetails extends Component {
                     <h4>Available Options:</h4>
                     <Button color="primary"
                             tag={Link}
-                            to={`/products/composeOrder/${product.id}`}>
+                            to={`/modules/${product.id}/new/`}>
                         Add Module
                     </Button>
                     {modulesList}

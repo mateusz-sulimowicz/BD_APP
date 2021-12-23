@@ -18,6 +18,8 @@ public class Module {
 
     private Long id;
 
+    private Long productId;
+
     private String name;
 
     private List<Option> options;

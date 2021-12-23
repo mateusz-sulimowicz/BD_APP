@@ -5,11 +5,15 @@ import com.mati.domain.item.ItemRowMapper;
 import com.mati.domain.option.Option;
 import com.mati.domain.option.OptionDAO;
 import com.mati.domain.option.OptionRowMapper;
+import com.mati.domain.order.Order;
+import com.mati.domain.order.config.OrderConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +29,8 @@ public class ModuleDAO {
     static private final String FIND_BY_ID = "select * from module m where m.id = :moduleId";
 
     static private final String FIND_ALL_BY_PRODUCT = "select m.* from module m where m.product_id = :productId";
+
+    static private final String CREATE = "insert into module (name, product_id) values (:name, :productId)";
 
     static private final String DELETE = "delete from module where id = :moduleId";
 
@@ -80,6 +86,21 @@ public class ModuleDAO {
         SqlParameterSource parameters = new MapSqlParameterSource("moduleId", id);
 
         jdbcTemplate.update(DELETE, parameters);
+    }
+
+    public Module create(Module module) {
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("name", module.getName())
+                .addValue("productId", module.getProductId());
+
+        KeyHolder holder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update(CREATE, parameters, holder);
+
+        Integer key = (Integer) holder.getKeys().get("id");
+        module.setId(key.longValue());
+
+        return module;
     }
 
 

@@ -16,13 +16,14 @@ create table module
 (
     id   integer generated always as identity primary key,
     product_id integer not null references product,
-    name varchar not null
+    name varchar not null,
+    constraint module_unique UNIQUE (product_id, name)
 );
 
 create table item
 (
-    id integer not null primary key,
-    name varchar not null
+    id integer generated always as identity primary key,
+    name varchar not null unique
 );
 
 create table product_order
@@ -66,13 +67,13 @@ INSERT INTO module
 values (default, 1, 'Camera');
 
 INSERT INTO item
-values (1, 'Storage 512 GB');
+values (default, 'Storage 512 GB');
 INSERT INTO item
-values (2, 'Storage 256 GB');
+values (default,  'Storage 256 GB');
 INSERT INTO item
-values (3, 'Front Camera 16 Mpx');
+values (default, 'Front Camera 16 Mpx');
 INSERT INTO item
-values (4, 'Back Camera 32 Mpx');
+values (default,  'Back Camera 32 Mpx');
 
 select *
 from product;

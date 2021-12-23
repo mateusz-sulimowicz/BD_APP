@@ -38,6 +38,15 @@ public class ModuleController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping
+    public ResponseEntity<Module> createModule(@RequestBody Module module) throws URISyntaxException {
+        Module createdModule = moduleDAO.create(module);
+        return ResponseEntity
+                .created(new URI("/api/modules/" + module.getId()))
+                .body(createdModule);
+    }
+
+
    /* @PostMapping
     public ResponseEntity<Module> createModule(@RequestBody Module module) throws URISyntaxException {
         Module savedModule = repository.save(module);

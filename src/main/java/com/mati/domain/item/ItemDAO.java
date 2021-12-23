@@ -25,7 +25,7 @@ public class ItemDAO {
             "join config c on i.id = c.item_id " +
             "where c.order_id = :order_id and c.module_id = :module_id";
 
-    static private final String CREATE = "insert into item (id, name) values (:id, :name)";
+    static private final String CREATE = "insert into item (name) values (:name)";
 
     static private final String DELETE = "delete from item i where i.id = :item_id";
 
@@ -68,7 +68,6 @@ public class ItemDAO {
 
     public Item create(Item item) {
         SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id", item.getId())
                 .addValue("name", item.getName());
 
         jdbcTemplate.update(CREATE, parameters);
