@@ -38,6 +38,7 @@ class Module extends Component {
         });
     }
 
+
     render() {
         const options = this.state.module.options;
         const optionList = options.map(option =>
@@ -55,7 +56,7 @@ class Module extends Component {
                 <Container fluid>
                     <div style={{float: 'right'}}>
                         <Button color="primary" tag={Link} to="/products/new">Add Option</Button>
-                        <Button color="danger" tag={Link} to="/products/new">Delete</Button>
+                        <Button color="danger" onClick={() => this.props.onRemoved(this.state.module.id)}> Delete </Button>
                     </div>
                     <Table className="mt-4">
                         <thead className="thead-light">

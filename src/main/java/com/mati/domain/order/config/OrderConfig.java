@@ -1,11 +1,6 @@
 package com.mati.domain.order.config;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-import javax.persistence.*;
 
 @Data
 public class OrderConfig {

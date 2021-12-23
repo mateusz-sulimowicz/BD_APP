@@ -22,12 +22,31 @@ class ProductDetails extends Component {
             .then(fetchedDetails => this.setState({product: fetchedDetails}));
     }
 
+    async remove(id) {
+        await fetch(`/api/modules/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log(response)
+            if (response.ok) {
+                let updatedModules = [...this.state.product.modules].filter(i => i.id !== id);
+                let product = this.state.product;
+                product.modules = updatedModules;
+                this.setState({product: product});
+            }
+        });
+    }
+
+
     render() {
         const {product} = this.state;
         const modules = product.modules;
 
         const modulesList = modules
-            .map(module => <Module data={module}/>);
+            .map(module => <Module onRemoved={(id) => this.remove(id)} data={module}/>);
         return (
             <div>
                 

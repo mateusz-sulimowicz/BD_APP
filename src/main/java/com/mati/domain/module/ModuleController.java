@@ -32,6 +32,12 @@ public class ModuleController {
                 .orElseThrow(RuntimeException::new);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Module> deleteModule(@PathVariable Long id) {
+        moduleDAO.deleteById(id);
+        return ResponseEntity.ok().build();
+    }
+
    /* @PostMapping
     public ResponseEntity<Module> createModule(@RequestBody Module module) throws URISyntaxException {
         Module savedModule = repository.save(module);
