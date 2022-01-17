@@ -59,20 +59,17 @@ class ProductDetails extends Component {
                             </Button>
                         </div>
                         <h3>
-                            {this.state.product.name}
+                            Product: {this.state.product.name}
                         </h3>
                     <h3>
                         Base price: {this.state.product.basePrice}
                     </h3>
-                    <p>
-                        Description: bla bla bla
-                    </p>
-                    <h4>Available Options:</h4>
                     <Button color="primary"
                             tag={Link}
                             to={`/modules/${product.id}/new/`}>
                         Add Module
                     </Button>
+                    <h4>Available Options:</h4>
                     {modulesList}
                 </Container>
             </div>

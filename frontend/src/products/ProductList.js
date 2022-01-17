@@ -51,7 +51,7 @@ class ProductList extends Component {
                         <thead>
                         <tr>
                             <th width="10%">Product</th>
-                            <th width="5%">Price</th>
+                            <th width="5%">Base price</th>
                             <th width="5%">Actions</th>
                         </tr>
                         </thead>
