@@ -4,7 +4,6 @@ import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
 
 class OptionEdit extends Component {
 
-
     constructor(props) {
         super(props);
 
@@ -18,13 +17,6 @@ class OptionEdit extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    async componentDidMount() {
-        /*if (this.props.match.params.id !== 'new') {
-            const fetchedItem = await (await fetch(`/api/options/${this.props.match.params.id}`)).json();
-            this.setState({item: fetchedItem});
-        }*/
-    }
-
     handleChange(event) {
         const target = event.target;
         const value = target.value;
@@ -34,7 +26,6 @@ class OptionEdit extends Component {
         this.setState({option});
         console.log(this.state.option)
     }
-
 
     async handleSubmit(event) {
         event.preventDefault();
@@ -50,13 +41,22 @@ class OptionEdit extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({price: option.price, moduleId: option.moduleId, item: {id: option.itemId}}),
-        }).then(response => console.log(response));
-        this.props.history.push(`/products/details/${option.productId}`);
+            body: JSON.stringify({price: option.price, moduleId: option.moduleId, item: {name: option.itemName}}),
+        }).then(response => {
+            console.log(response);
+            if (!response.ok) {
+                this.setState({errorMessage: `Submition failed!`})
+            } else {
+                this.setState({errorMessage: undefined});
+            }
+        });
+        if (this.state.errorMessage === undefined) {
+            this.props.history.push(`/products/details/${option.productId}`)
+        }
     }
 
     render() {
-        const {option} = this.state;
+        const {option, errorMessage} = this.state;
         const title = <h2>{this.props.match.params.id !== 'new' ? 'Edit Option' : 'Add Option'}</h2>;
 
         return <div>
@@ -69,12 +69,12 @@ class OptionEdit extends Component {
                                onChange={this.handleChange} autoComplete="price"/>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="itemId">Item ID</Label>
-                        <Input type="number" name="itemId" id="itemId" value={option.itemId || ''}
-                               onChange={this.handleChange} autoComplete="itemId"/>
+                        <Label for="Item name">Item Name</Label>
+                        <Input type="string" name="itemName" id="itemName" value={option.itemName || ''}
+                               onChange={this.handleChange} autoComplete="itemName"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button disabled={this.state.option.price === undefined || this.state.option.itemId === undefined}
+                        <Button disabled={this.state.option.price === undefined || this.state.option.price <= 0 || this.state.option.itemName === undefined}
                                 color="primary"
                                 type="submit">
                             Save
@@ -82,6 +82,7 @@ class OptionEdit extends Component {
                         <Button color="secondary" tag={Link} to={`/products/details/${option.productId}`}>Cancel</Button>
                     </FormGroup>
                 </Form>
+                {errorMessage}
             </Container>
         </div>
     }

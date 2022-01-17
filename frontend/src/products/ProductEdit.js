@@ -49,8 +49,14 @@ class ProductEdit extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(product),
+        }).then(response => {
+            if (response.ok) {
+                this.props.history.push('/products');
+            } else {
+                this.setState({errorMessage: "Product already exists!"})
+            }
         });
-        this.props.history.push('/products');
+
     }
 
     render() {
@@ -76,6 +82,7 @@ class ProductEdit extends Component {
                         <Button color="secondary" tag={Link} to="/products">Cancel</Button>
                     </FormGroup>
                 </Form>
+                {this.state.errorMessage}
             </Container>
         </div>
     }

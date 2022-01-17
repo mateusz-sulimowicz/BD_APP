@@ -1,12 +1,12 @@
 package com.mati.domain.item;
 
+import com.mati.domain.option.Option;
+import com.mati.domain.order.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +20,8 @@ public class ItemDAO {
     static private final String FIND_ALL = "select * from item i";
 
     static private final String FIND_BY_ID = "select * from item i where i.id = :item_id";
+
+    static private final String FIND_BY_CODE = "select * from item i where i.name = :item_code";
 
     static private final String FIND_BY_ORDER_AND_MODULE = "select i.* from item i " +
             "join config c on i.id = c.item_id " +
@@ -51,6 +53,18 @@ public class ItemDAO {
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
+    }
+
+    public Optional<Item> findByCode(String code) {
+        SqlParameterSource parameters = new MapSqlParameterSource("item_code", code);
+
+        try {
+            Item foundItem = jdbcTemplate.queryForObject(FIND_BY_CODE, parameters, new ItemRowMapper());
+            return Optional.of(foundItem);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
+
     }
 
     public Optional<Item> findByOrderAndModule(Long orderId, Long moduleId) {

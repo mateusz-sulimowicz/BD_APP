@@ -49,14 +49,13 @@ class ProductDetails extends Component {
             .map(module => <Module onRemoved={(id) => this.remove(id)} data={module}/>);
         return (
             <div>
-                
 
                 <Container fluid>
                     <div style={{float: 'right'}}>
                             <Button color="success"
                                     tag={Link}
                                     to={`/products/composeOrder/${product.id}`}>
-                                Order now
+                                Add new order
                             </Button>
                         </div>
                         <h3>

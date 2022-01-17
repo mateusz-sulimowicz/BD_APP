@@ -1,6 +1,7 @@
 package com.mati.domain.option;
 
-import com.mati.domain.order.config.OrderConfig;
+import com.mati.domain.item.Item;
+import com.mati.domain.item.ItemDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -23,23 +24,26 @@ public class OptionDAO {
     static private final String CREATE = "insert into option (module_id, item_id, price) " +
             "values (:moduleId, :itemId, :price)";
 
-   /* static private final String FIND_BY_ID = "select * from option o where o.id = :option_id";
+    /* static private final String FIND_BY_ID = "select * from option o where o.id = :option_id";
 
-    static private final String CREATE = "insert into option (item_id, module_id, price) " +
-            "values (:itemid, :moduleId, :price)";
+     static private final String CREATE = "insert into option (item_id, module_id, price) " +
+             "values (:itemid, :moduleId, :price)";
 
-    static private final String DELETE = "delete from option o where o.id = :optionId";
+     static private final String DELETE = "delete from option o where o.id = :optionId";
 
-    static private final String UPDATE = "update option set item_id = :itemId where id = :id";
-*/
+     static private final String UPDATE = "update option set item_id = :itemId where id = :id";
+ */
     NamedParameterJdbcTemplate jdbcTemplate;
 
     OptionRowMapper rowMapper;
 
+    ItemDAO itemDAO;
+
     @Autowired
-    public OptionDAO(NamedParameterJdbcTemplate jdbcTemplate, OptionRowMapper rowMapper) {
+    public OptionDAO(NamedParameterJdbcTemplate jdbcTemplate, OptionRowMapper rowMapper, ItemDAO itemDAO) {
         this.jdbcTemplate = jdbcTemplate;
         this.rowMapper = rowMapper;
+        this.itemDAO = itemDAO;
     }
 
     public List<Option> findByModuleId(Long id) {
@@ -63,9 +67,13 @@ public class OptionDAO {
     }
 
     public Option create(Option option) {
+        Item item = itemDAO
+                .findByCode(option.getItem().getName())
+                .orElseThrow(RuntimeException::new);
+
         SqlParameterSource parameters = new MapSqlParameterSource()
                 .addValue("moduleId", option.getModuleId())
-                .addValue("itemId", option.getItem().getId())
+                .addValue("itemId", item.getId())
                 .addValue("price", option.getPrice());
 
         jdbcTemplate.update(CREATE, parameters);

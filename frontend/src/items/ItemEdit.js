@@ -47,8 +47,13 @@ class ItemEdit extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(item),
-        }).then(response => console.log(response));
-        this.props.history.push('/items');
+        }).then(response => {
+            if (response.ok) {
+                this.props.history.push('/items');
+            } else {
+                this.setState({errorMessage: "Item already exists!"});
+            }
+        });
     }
 
     render() {
@@ -73,6 +78,7 @@ class ItemEdit extends Component {
                         <Button color="secondary" tag={Link} to="/items">Cancel</Button>
                     </FormGroup>
                 </Form>
+                {this.state.errorMessage}
             </Container>
         </div>
     }
