@@ -23,7 +23,10 @@ class Option extends Component {
                 </td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="danger" onClick={() => this.props.onRemoved(id)}>Delete</Button>
+                        {
+                            this.props.modifiable &&
+                            <Button size="sm" color="danger" onClick={() => this.props.onRemoved(id)}>Delete</Button>
+                        }
                     </ButtonGroup>
                 </td>
             </tr>

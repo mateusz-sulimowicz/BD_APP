@@ -51,7 +51,7 @@ create table option
     constraint option_pk PRIMARY KEY (module_id, item_id)
 );
 
-create function check_modules_configured() RETURNS TRIGGER AS
+create or replace function check_modules_configured() RETURNS TRIGGER AS
 $limit_config$
 DECLARE
     configs_total         int;

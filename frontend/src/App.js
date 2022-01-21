@@ -25,7 +25,7 @@ class App extends Component {
                   <Route path='/items/:id' component={ItemEdit}/>
                   <Route path="/items"  exact={true} component={ItemList}/>
                   <Route path="/products/composeOrder/:id" component={ComposeOrder}/>
-                  <Route path="/products/details/:id" component={ProductDetails}/>
+                  <Route path="/products/details/:id/:action" component={ProductDetails}/>
                   <Route path="/products/:id" component={ProductEdit}/>
                   <Route path="/products" exact={true} component={ProductList}/>
                   <Route path="/orders/:id" component={OrderDetails}/>

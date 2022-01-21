@@ -42,9 +42,12 @@ public class ProductsController {
 	@PostMapping
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
 		Product savedProduct = productDAO.create(product);
-		return ResponseEntity
+		var r = ResponseEntity
 				.created(new URI("/api/products/" + product.getId()))
 				.body(savedProduct);
+		System.out.println(r);
+		return r;
+
 	}
 
 	@PutMapping("/{id}")

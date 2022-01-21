@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link, withRouter, useLocation } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import React, {Component} from 'react';
+import {Link, withRouter, useLocation} from 'react-router-dom';
+import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 
 class OptionEdit extends Component {
 
@@ -45,7 +45,7 @@ class OptionEdit extends Component {
         }).then(response => {
             console.log(response);
             if (!response.ok) {
-                this.setState({errorMessage: `Submition failed!`})
+                this.setState({errorMessage: `Submition failed! Option already exists or selected item does not exist`})
             } else {
                 this.setState({errorMessage: undefined});
             }
@@ -74,12 +74,14 @@ class OptionEdit extends Component {
                                onChange={this.handleChange} autoComplete="itemName"/>
                     </FormGroup>
                     <FormGroup>
-                        <Button disabled={this.state.option.price === undefined || this.state.option.price <= 0 || this.state.option.itemName === undefined}
-                                color="primary"
-                                type="submit">
+                        <Button
+                            disabled={this.state.option.price === undefined || this.state.option.price <= 0 || this.state.option.itemName === undefined}
+                            color="primary"
+                            type="submit">
                             Save
                         </Button>
-                        <Button color="secondary" tag={Link} to={`/products/details/${option.productId}`}>Cancel</Button>
+                        <Button color="secondary" tag={Link}
+                                to={`/products/details/${option.productId}/setup`}>Cancel</Button>
                     </FormGroup>
                 </Form>
                 {errorMessage}

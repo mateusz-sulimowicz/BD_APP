@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link, withRouter } from 'react-router-dom';
-import { Button, Container, Form, FormGroup, Input, Label } from 'reactstrap';
+import React, {Component} from 'react';
+import {Link, withRouter} from 'react-router-dom';
+import {Button, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 
 class ProductEdit extends Component {
 
@@ -50,13 +50,17 @@ class ProductEdit extends Component {
             },
             body: JSON.stringify(product),
         }).then(response => {
-            if (response.ok) {
-                this.props.history.push('/products');
-            } else {
+            if (!response.ok) {
                 this.setState({errorMessage: "Product already exists!"})
             }
-        });
-
+            return response;
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if (data.id !== undefined) {
+                    this.props.history.push(`/products/details/${data.id}/setup`);
+                }
+            })
     }
 
     render() {

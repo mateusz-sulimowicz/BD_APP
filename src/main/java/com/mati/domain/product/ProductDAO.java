@@ -65,10 +65,14 @@ public class ProductDAO {
 
         KeyHolder holder = new GeneratedKeyHolder();
 
+        System.out.println(product);
+
         jdbcTemplate.update(CREATE, parameters, holder);
 
         Integer key = (Integer) holder.getKeys().get("id");
         product.setId(key.longValue());
+
+        System.out.println(product);
 
         return product;
     }

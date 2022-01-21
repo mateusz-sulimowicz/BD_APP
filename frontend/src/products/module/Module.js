@@ -38,39 +38,46 @@ class Module extends Component {
         });
     }
 
-
     render() {
         console.log(this.state)
 
-
         const options = this.state.module.options;
         const optionList = options.map(option =>
-            <Option onRemoved={(id) => this.removeOption(id)} data={option}/>
+            <Option modifiable={this.props.modifiable} onRemoved={(id) => this.removeOption(id)} data={option}/>
         )
 
         return (
             <div>
-
-
-            <h3>
-                {this.props.data.name}
-            </h3>
+                <h3>
+                    {this.props.data.name}
+                </h3>
 
                 <Container fluid>
                     <div style={{float: 'right'}}>
-                        <Button color="primary" tag={Link}
-                                to={`/options/${this.state.module.productId}/${this.state.module.id}/new`}>
-                            Add Option
-                        </Button>
-                        <Button color="danger" onClick={() => this.props.onRemoved(this.state.module.id)}> Delete </Button>
+                        {
+                            this.props.modifiable &&
+                            <Button color="primary" tag={Link}
+                                    to={`/options/${this.state.module.productId}/${this.state.module.id}/new`}>
+                                Add Option
+                            </Button>
+                        }
+
+                        {
+                            this.props.modifiable &&
+                            <Button color="danger"
+                                    onClick={() => this.props.onRemoved(this.state.module.id)}> Delete </Button>
+                        }
                     </div>
                     <Table className="mt-4">
                         <thead className="thead-light">
                         <tr>
-                            <th width="5%"> Id </th>
-                            <th width="15%"> Name </th>
-                            <th width="10%"> Price </th>
-                            <th width="10%"> Actions </th>
+                            <th width="5%"> Id</th>
+                            <th width="15%"> Name</th>
+                            <th width="10%"> Price</th>
+                            {
+                                this.props.modifiable &&
+                                <th width="10%"> Actions</th>
+                            }
                         </tr>
                         </thead>
                         <tbody>
@@ -78,7 +85,6 @@ class Module extends Component {
                         </tbody>
                     </Table>
                 </Container>
-
 
             </div>
         )

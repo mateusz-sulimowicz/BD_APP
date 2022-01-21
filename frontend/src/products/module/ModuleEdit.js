@@ -55,7 +55,7 @@ class ModuleEdit extends Component {
             },
             body: JSON.stringify(module),
         }).then(response => console.log(response));
-        this.props.history.push(`/products/details/${module.productId}`);
+        this.props.history.push(`/products/details/${module.productId}/setup`);
     }
 
     render() {
@@ -77,7 +77,7 @@ class ModuleEdit extends Component {
                                 type="submit">
                             Save
                         </Button>
-                        <Button color="secondary" tag={Link} to={`/products/details/${module.productId}`}>Cancel</Button>
+                        <Button color="secondary" tag={Link} to={`/products/details/${module.productId}/setup`}>Cancel</Button>
                     </FormGroup>
                 </Form>
             </Container>

@@ -11,7 +11,7 @@ class Product extends Component {
             <tr>
                 <td>
                     <Button color="link">
-                        <Link to={"/products/details/" + id}>
+                        <Link to={`/products/details/${id}/view`}>
                             {this.props.data.name}
                         </Link>
                     </Button>
