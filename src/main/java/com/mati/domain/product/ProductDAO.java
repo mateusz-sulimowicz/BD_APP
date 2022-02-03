@@ -98,7 +98,7 @@ public class ProductDAO {
 
     public Product createCopyOf(Product product) {
         Product productCopy = new Product();
-        productCopy.setName(product.getName() + "1");
+        productCopy.setName(product.getName() + "_1");
         productCopy.setBasePrice(product.getBasePrice());
 
         productCopy = create(productCopy);
