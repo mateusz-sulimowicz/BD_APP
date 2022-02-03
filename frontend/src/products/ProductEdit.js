@@ -57,7 +57,7 @@ class ProductEdit extends Component {
         }).then(response => response.json())
             .then(data => {
                 console.log(data);
-                if (data.id !== undefined) {
+                if (data.id !== undefined && this.props.match.params.id === 'new') {
                     this.props.history.push(`/products/details/${data.id}/setup`);
                 }
             })

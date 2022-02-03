@@ -22,6 +22,7 @@ class Product extends Component {
                 <td>
                     <ButtonGroup>
                         <Button size="sm" color="primary" tag={Link} to={`/products/${id}`}>Edit</Button>
+                        <Button size="sm" color="success" onClick={() => this.props.onCopied(this.props.data)}>Add Version</Button>
                         <Button size="sm" color="danger" onClick={() => this.props.onRemoved(id)}>Delete</Button>
                     </ButtonGroup>
                 </td>

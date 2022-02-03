@@ -44,9 +44,6 @@ class ProductDetails extends Component {
 
 
     render() {
-
-        console.log(this.props)
-
         const {product} = this.state;
         const modules = product.modules;
 

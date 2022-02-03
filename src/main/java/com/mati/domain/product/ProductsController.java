@@ -42,25 +42,26 @@ public class ProductsController {
 	@PostMapping
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
 		Product savedProduct = productDAO.create(product);
-		var r = ResponseEntity
+		return ResponseEntity
 				.created(new URI("/api/products/" + product.getId()))
 				.body(savedProduct);
-		System.out.println(r);
-		return r;
+	}
 
+	@PostMapping("{id}")
+	public ResponseEntity<Product> copyProduct(@RequestBody Product product) throws URISyntaxException {
+		Product savedProduct = productDAO.createCopyOf(product);
+		return ResponseEntity
+				.created(new URI("/api/products/" + product.getId()))
+				.body(savedProduct);
 	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
 		productDAO.update(product);
-
 		return ResponseEntity.ok(product);
 	}
 
 	/*
-
-
-
 	@PostMapping
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
 		Product savedProduct = repository.save(product);

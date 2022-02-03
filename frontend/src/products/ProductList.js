@@ -15,7 +15,24 @@ class ProductList extends Component {
     componentDidMount() {
         fetch('/api/products')
             .then(response => response.json())
-            .then(fetchedProducts =>  this.setState({products: fetchedProducts}));
+            .then(fetchedProducts => this.setState({products: fetchedProducts}));
+    }
+
+    async handleCopy(product) {
+        console.log(product);
+
+        await fetch('/api/products' + ('/' + product.id), {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(product),
+        }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                this.props.history.push(`/products/details/${data.id}/setup`);
+            })
     }
 
     async remove(id) {
@@ -38,11 +55,12 @@ class ProductList extends Component {
         const products = this.state.products;
 
         const productsList = products
-            .map(product => <Product key={product.id} onRemoved={(id) => this.remove(id)} data={product}/>);
+            .map(product => <Product key={product.id} onCopied={product => this.handleCopy(product)}
+                                     onRemoved={(id) => this.remove(id)} data={product}/>);
 
         return (
             <div>
-                
+
                 <Container fluid>
                     <div style={{float: 'right'}}>
                         <Button color="success" tag={Link} to="/products/new">Add Product</Button>

@@ -12,6 +12,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,8 @@ public class ProductDAO {
     static private final String FIND_ALL = "select * from product p";
 
     static private final String FIND_BY_ID = "select * from product p where p.id = :productId";
+
+    static private final String FIND_BY_NAME = "select * from product p where p.name = :name";
 
     static private final String CREATE = "insert into product (name, base_price) values (:name, :basePrice)";
 
@@ -65,15 +68,10 @@ public class ProductDAO {
 
         KeyHolder holder = new GeneratedKeyHolder();
 
-        System.out.println(product);
-
         jdbcTemplate.update(CREATE, parameters, holder);
 
         Integer key = (Integer) holder.getKeys().get("id");
         product.setId(key.longValue());
-
-        System.out.println(product);
-
         return product;
     }
 
@@ -97,5 +95,23 @@ public class ProductDAO {
 
         jdbcTemplate.update(DELETE, parameters);
     }
+
+    public Product createCopyOf(Product product) {
+        Product productCopy = new Product();
+        productCopy.setName(product.getName() + "1");
+        productCopy.setBasePrice(product.getBasePrice());
+
+        productCopy = create(productCopy);
+
+        System.out.println(productCopy);
+
+        List<Module> productCopyModules = new ArrayList<>();
+        for (var module : findById(product.getId()).get().getModules()) {
+            productCopyModules.add(moduleDAO.createCopyOf(module, productCopy.getId()));
+        }
+        productCopy.setModules(productCopyModules);
+        return productCopy;
+    }
+
 
 }

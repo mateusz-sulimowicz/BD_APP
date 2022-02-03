@@ -2,6 +2,8 @@ package com.mati.domain.option;
 
 import com.mati.domain.item.Item;
 import com.mati.domain.item.ItemDAO;
+import com.mati.domain.module.Module;
+import org.apache.catalina.startup.ListenerCreateRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -79,6 +81,15 @@ public class OptionDAO {
         jdbcTemplate.update(CREATE, parameters);
 
         return option;
+    }
+
+    public Option createCopyOf(Option option, Module module) {
+        Option optionCopy = new Option();
+        optionCopy.setModuleId(module.getId());
+        optionCopy.setItem(option.getItem());
+        optionCopy.setPrice(option.getPrice());
+
+        return create(optionCopy);
     }
 
 

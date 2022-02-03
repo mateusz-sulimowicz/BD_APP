@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -103,7 +104,20 @@ public class ModuleDAO {
         return module;
     }
 
+    public Module createCopyOf(Module module, Long productId) {
+        var moduleCopy = new Module();
+        moduleCopy.setProductId(productId);
+        moduleCopy.setName(module.getName());
+        moduleCopy = create(moduleCopy);
 
+        List<Option> moduleCopyOptions = new ArrayList<>();
+        for (var option : module.getOptions()) {
+            moduleCopyOptions.add(optionDAO.createCopyOf(option, moduleCopy));
+        }
+
+        moduleCopy.setOptions(moduleCopyOptions);
+        return moduleCopy;
+    }
 
    /* public Item create(Item item) {
         SqlParameterSource parameters = new MapSqlParameterSource()
