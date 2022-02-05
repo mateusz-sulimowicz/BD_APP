@@ -1,7 +1,7 @@
-package com.mimuw.domain.order;
+package com.mimuw.order;
 
-import com.mimuw.domain.order.config.OrderConfig;
-import com.mimuw.domain.product.Product;
+import com.mimuw.order.config.OrderConfig;
+import com.mimuw.product.Product;
 import lombok.*;
 
 import java.math.BigDecimal;

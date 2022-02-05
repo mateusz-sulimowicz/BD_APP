@@ -1,4 +1,4 @@
-package com.mimuw.domain.product;
+package com.mimuw.product;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -59,33 +59,5 @@ public class ProductsController {
 		productDAO.update(product);
 		return ResponseEntity.ok(product);
 	}
-
-	/*
-	@PostMapping
-	public ResponseEntity<Product> createProduct(@RequestBody Product product) throws URISyntaxException {
-		Product savedProduct = repository.save(product);
-		return ResponseEntity
-				.created(new URI("/api/products/" + product.getId()))
-				.body(savedProduct);
-	}
-
-	@PutMapping("/{id}")
-	public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
-		Product currentProduct = repository
-				.findById(id)
-				.orElseThrow(RuntimeException::new);
-
-		currentProduct.setName(product.getName());
-		currentProduct = repository.save(product);
-
-		return ResponseEntity.ok(currentProduct);
-	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Product> deleteProduct(@PathVariable Long id) {
-		repository.deleteById(id);
-		return ResponseEntity.ok().build();
-	}
-*/
 
 }

@@ -1,4 +1,4 @@
-package com.mimuw.domain.option;
+package com.mimuw.option;
 
 import java.net.URI;
 import java.net.URISyntaxException;

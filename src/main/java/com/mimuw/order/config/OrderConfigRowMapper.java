@@ -1,4 +1,4 @@
-package com.mimuw.domain.order.config;
+package com.mimuw.order.config;
 
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;

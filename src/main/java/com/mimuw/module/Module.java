@@ -1,6 +1,6 @@
-package com.mimuw.domain.module;
+package com.mimuw.module;
 
-import com.mimuw.domain.option.Option;
+import com.mimuw.option.Option;
 import lombok.Data;
 
 import java.util.List;

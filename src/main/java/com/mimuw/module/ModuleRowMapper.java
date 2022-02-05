@@ -1,7 +1,7 @@
-package com.mimuw.domain.module;
+package com.mimuw.module;
 
-import com.mimuw.domain.option.Option;
-import com.mimuw.domain.option.OptionDAO;
+import com.mimuw.option.Option;
+import com.mimuw.option.OptionDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;

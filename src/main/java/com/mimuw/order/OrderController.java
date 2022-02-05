@@ -1,4 +1,4 @@
-package com.mimuw.domain.order;
+package com.mimuw.order;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,32 +46,5 @@ public class OrderController {
         orderDAO.deleteById(id);
         return ResponseEntity.ok().build();
     }
-
-    /*
-    @PutMapping("/{id}")
-    public ResponseEntity<Order> updateOrder(@PathVariable Long id, @RequestBody Order order) {
-        Order currentOrder = repository
-                .findById(id)
-                .orElseThrow(RuntimeException::new);
-
-        currentOrder.setProduct(order.getProduct());
-        currentOrder.setValue(order.getValue());
-        currentOrder.setOrderDate(order.getOrderDate());
-        currentOrder = repository.save(order);
-
-        return ResponseEntity.ok(currentOrder);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Order> deleteOrder(@PathVariable Long id) {
-        repository.deleteById(id);
-        return ResponseEntity.ok().build();
-    }
-
-    @Data
-    public static class OrderConfig {
-        private Long itemId;
-        private Long orderId;
-    }*/
 
 }

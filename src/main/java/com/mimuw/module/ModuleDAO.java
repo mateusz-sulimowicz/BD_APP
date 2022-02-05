@@ -1,8 +1,8 @@
-package com.mimuw.domain.module;
+package com.mimuw.module;
 
-import com.mimuw.domain.option.Option;
-import com.mimuw.domain.option.OptionDAO;
-import com.mimuw.domain.option.OptionRowMapper;
+import com.mimuw.option.Option;
+import com.mimuw.option.OptionDAO;
+import com.mimuw.option.OptionRowMapper;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -113,33 +113,6 @@ public class ModuleDAO {
         moduleCopy.setOptions(moduleCopyOptions);
         return moduleCopy;
     }
-
-   /* public Item create(Item item) {
-        SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id", item.getId())
-                .addValue("name", item.getName());
-
-        jdbcTemplate.update(CREATE, parameters);
-
-        return item;
-    }
-
-    public Item update(Item item) {
-        SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id", item.getId())
-                .addValue("name", item.getName());
-
-        jdbcTemplate.update(UPDATE, parameters);
-
-        return item;
-    }
-
-
-    void deleteById(Long id) {
-        SqlParameterSource parameters = new MapSqlParameterSource("item_id", id);
-
-        jdbcTemplate.update(DELETE, parameters);
-    }*/
 
 }
 

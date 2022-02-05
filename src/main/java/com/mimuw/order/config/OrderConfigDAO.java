@@ -1,4 +1,4 @@
-package com.mimuw.domain.order.config;
+package com.mimuw.order.config;
 
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -11,8 +11,6 @@ import java.util.List;
 @Repository
 @Transactional
 public class OrderConfigDAO {
-
-    static private final String FIND_ALL = "select * from product_order o";
 
     static private final String FIND_ALL_BY_ORDER_ID = "select * from config c where c.order_id = :orderId";
 

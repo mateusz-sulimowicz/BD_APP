@@ -1,4 +1,4 @@
-package com.mimuw.domain.item;
+package com.mimuw.item;
 
 import lombok.Data;
 

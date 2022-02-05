@@ -1,6 +1,6 @@
-package com.mimuw.domain.product;
+package com.mimuw.product;
 
-import com.mimuw.domain.module.Module;
+import com.mimuw.module.Module;
 import lombok.Data;
 
 import java.math.BigDecimal;

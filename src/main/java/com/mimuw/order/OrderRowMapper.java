@@ -1,9 +1,9 @@
-package com.mimuw.domain.order;
+package com.mimuw.order;
 
-import com.mimuw.domain.order.config.OrderConfig;
-import com.mimuw.domain.order.config.OrderConfigDAO;
-import com.mimuw.domain.product.Product;
-import com.mimuw.domain.product.ProductDAO;
+import com.mimuw.order.config.OrderConfig;
+import com.mimuw.order.config.OrderConfigDAO;
+import com.mimuw.product.Product;
+import com.mimuw.product.ProductDAO;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 

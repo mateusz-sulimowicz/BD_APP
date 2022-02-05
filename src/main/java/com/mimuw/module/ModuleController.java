@@ -1,4 +1,4 @@
-package com.mimuw.domain.module;
+package com.mimuw.module;
 
 import java.net.URI;
 import java.net.URISyntaxException;

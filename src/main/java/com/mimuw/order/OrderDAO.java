@@ -1,7 +1,7 @@
-package com.mimuw.domain.order;
+package com.mimuw.order;
 
-import com.mimuw.domain.order.config.OrderConfig;
-import com.mimuw.domain.order.config.OrderConfigDAO;
+import com.mimuw.order.config.OrderConfig;
+import com.mimuw.order.config.OrderConfigDAO;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;

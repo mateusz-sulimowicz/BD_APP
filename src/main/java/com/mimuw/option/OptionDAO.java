@@ -1,8 +1,8 @@
-package com.mimuw.domain.option;
+package com.mimuw.option;
 
-import com.mimuw.domain.item.Item;
-import com.mimuw.domain.item.ItemDAO;
-import com.mimuw.domain.module.Module;
+import com.mimuw.item.Item;
+import com.mimuw.item.ItemDAO;
+import com.mimuw.module.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -25,15 +25,6 @@ public class OptionDAO {
     static private final String CREATE = "insert into option (module_id, item_id, price) " +
             "values (:moduleId, :itemId, :price)";
 
-    /* static private final String FIND_BY_ID = "select * from option o where o.id = :option_id";
-
-     static private final String CREATE = "insert into option (item_id, module_id, price) " +
-             "values (:itemid, :moduleId, :price)";
-
-     static private final String DELETE = "delete from option o where o.id = :optionId";
-
-     static private final String UPDATE = "update option set item_id = :itemId where id = :id";
- */
     NamedParameterJdbcTemplate jdbcTemplate;
 
     OptionRowMapper rowMapper;
@@ -90,34 +81,6 @@ public class OptionDAO {
 
         return create(optionCopy);
     }
-
-
-   /* public Item create(Item item) {
-        SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id", item.getId())
-                .addValue("name", item.getName());
-
-        jdbcTemplate.update(CREATE, parameters);
-
-        return item;
-    }
-
-    public Item update(Item item) {
-        SqlParameterSource parameters = new MapSqlParameterSource()
-                .addValue("id", item.getId())
-                .addValue("name", item.getName());
-
-        jdbcTemplate.update(UPDATE, parameters);
-
-        return item;
-    }
-
-
-    void deleteById(Long id) {
-        SqlParameterSource parameters = new MapSqlParameterSource("item_id", id);
-
-        jdbcTemplate.update(DELETE, parameters);
-    }*/
 
 }
 

@@ -1,7 +1,7 @@
-package com.mimuw.domain.product;
+package com.mimuw.product;
 
-import com.mimuw.domain.module.Module;
-import com.mimuw.domain.module.ModuleDAO;
+import com.mimuw.module.Module;
+import com.mimuw.module.ModuleDAO;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
